@@ -20,12 +20,12 @@ CREATE TABLE gifts(
     PRIMARY KEY(id)
 );
 
-var object = {
-    id: 0,
-    item: "name",
-    url: "url",
-    category: "category",
-    priceRange: 1,
-    comments: "notes to add",
-    purchased: false
-}
+-- var object = {
+--     id: 0,
+--     item: "name",
+--     url: "url",
+--     category: "category",
+--     priceRange: 1,
+--     comments: "notes to add",
+--     purchased: false
+-- }
