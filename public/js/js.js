@@ -97,3 +97,51 @@ var handleDeleteBtnClick = function() {
 // Add event listeners to the submit and delete buttons
 $submitBtn.on("click", handleFormSubmit);
 $exampleList.on("click", ".delete", handleDeleteBtnClick);
+
+// *****************************************************************
+// sign IN or sign UP
+// *****************************************************************
+
+var logSwitch = false;
+
+$("#loginBtn").on("click", function() {
+  if (logSwitch) {
+    logSwitch = false;
+    $("#loginBtn").html("SIGN UP");
+    $("#isMember").removeClass("hide");
+    $("#isMember").addClass("show");
+    console.log("on");
+    $("#signUpPage").removeClass("show");
+    $("#signUpPage").addClass("hide");
+    $("#loginPage").removeClass("hide");
+    $("#loginPage").addClass("show");
+  } else {
+    logSwitch = true;
+    $("#loginBtn").html("SIGN IN");
+    $("#isMember").removeClass("show");
+    $("#isMember").addClass("hide");
+    console.log("off");
+    $("#signUpPage").removeClass("hide");
+    $("#signUpPage").addClass("show");
+    $("#loginPage").removeClass("show");
+    $("#loginPage").addClass("hide");
+  }
+});
+
+$("#signUp").on("click", function(event) {
+  event.preventDefault();
+  var name = $(".name").val();
+  var email = $(".email").val();
+  var password = $(".password").val();
+  console.log("name: ", name);
+  console.log("email: ", email);
+  console.log("password: ", password);
+});
+
+$("#signIn").on("click", function(event) {
+  event.preventDefault();
+  var email = $(".email").val();
+  var password = $(".password").val();
+  console.log("email: ", email);
+  console.log("password: ", password);
+});

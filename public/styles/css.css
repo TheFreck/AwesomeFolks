@@ -1,0 +1,23 @@
+.list-group-item {
+  line-height: 2.5;
+}
+.modality{
+  border: solid;
+  padding: 3%;
+}
+.show{
+  display: inline-block;
+}
+.hide{
+  display: none;
+}
+
+#loginPage{
+  background: tan;
+}
+#signUpPage{
+  background: yellowgreen;
+}
+#loginBtn{
+  cursor: pointer;
+}
