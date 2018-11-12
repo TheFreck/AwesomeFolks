@@ -2,14 +2,15 @@
   "development": {
     "username": "root",
     "password": "root",
-    "database": "greedyBastards",
+    "database": "greedybastards",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": "3307"
   },
   "test": {
     "username": "root",
     "password": "root",
-    "database": "greedyBastards",
+    "database": "greedybastards",
     "host": "localhost",
     "dialect": "mysql",
     "logging": false

@@ -4,23 +4,42 @@
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
         <h2>This is our Home Page!</h2>
-        <form class="clearfix mb-4" action="POST">
+        <form class="clearfix mb-4 create-form">
           <div class="form-group">
-            <label for="example-text">Example Text</label>
-            <input type="text" id="example-text" class="form-control" aria-describedby="example-text" placeholder="Enter Example Text">
+            <label for="item">Item Description</label>
+            <input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
+   <label for="url">URL (if known)</label>
+            <textarea class="form-control" id="url" aria-describedby="url" placeholder="Enter URL of item if known"></textarea>
+   
+        
           </div>
-          <div class="form-group">
-            <label for="example-description">Example Description</label>
-            <textarea class="form-control" id="example-description" aria-describedby="example-description" placeholder="Enter Example Description"></textarea>
+           <div class="form-group">
+            <label for="category">Category</label>
+            <textarea class="form-control" id="category" aria-describedby="category" placeholder="Enter Category"></textarea>
+          </div>
+           <div class="form-group">
+            <label for="price">Price</label>
+            <textarea class="form-control" id="price" aria-describedby="price" placeholder="Enter Price (if known)"></textarea>
+          </div>
+           <div class="form-group">
+            <label for="comments">Comments</label>
+            <textarea class="form-control" id="comments" aria-describedby="comments" placeholder="Enter additional info such as size, color, etc"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
-        <h3>Examples:</h3>
-        <ul id="example-list" class="list-group">
-          {{#each examples}}
+
+        <h3>Wish List:</h3>
+        <ul id="wishList" class="list-group">
+          {{#each gift}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="example/{{this.id}}">{{this.text}}</a>
+            <a href="""{{this.id}}">{{this.item}}</a>
+            <p>{{this.url}}</p>
+            <p>{{this.category}}</p>
+            <p>{{this.price}}</p>
+            <p>{{this.comments}}</p>
             <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-info float-right edit">EDIT</button>
+
           </li>
           {{/each}}
         </ul>
