@@ -4,7 +4,8 @@
     "password": "root",
     "database": "greedyBastards",
     "host": "localhost",
-    "dialect": "mysql"
+    "dialect": "mysql",
+    "port": "3307"
   },
   "test": {
     "username": "root",

@@ -1,76 +1,8 @@
-<div id="home">
-
-  <div class="container">
-
-    <div class="row">
-
-      <div class="col-8 offset-2">
-
-        <h1>{{msg}}</h1>
-        
-        <p><span id="isMember" class="show">not</span> already a member? <span id="loginBtn">SIGN UP</span></p>
-        
-        <div class="modality show" id="loginPage">
-          <form>
-            <h1>Sign In</h1>
-            <br>
-            <h2>email: </h2>
-            <br><input type="email" class="email">
-            <br><br>
-            <h2>password: </h2>
-            <br><input type="password" class="password">
-            <br><br>
-            <input type="submit" class="submit" id="signIn">
-          </form>
-        </div>    
-
-        <div class="modality hide" id="signUpPage">
-          <form>
-            <h1>Sign Up</h1>
-            <br>
-            <h2>name: </h2>
-            <br><input type="text" class="name">
-            <br><br>
-            <h2>email: </h2>
-            <br><input type="email" class="email">
-            <br><br>
-            <h2>password: </h2>
-            <br><input type="password" class="password">
-            <br><br>
-            <input type="submit" class="submit" id="signUp">
-          </form>
-        </div>        
-
-        <ul id="example-list" class="list-group">
-
-          {{#each examples}}
-
-          <li data-id="{{this.email}}" class="list-group-item">
-
-            <a href="example/{{this.id}}">{{this.text}}</a>
-
-            <button class="btn btn-danger float-right delete">ｘ</button>
-
-          </li>
-
-          {{/each}}
-
-        </ul>
-
-      </div>
-
-    </div>
-
-  </div>
-  
-</div>
-
-{{!-- WISH LIST PAGE THAT IS ALSO ON GIFTS.HANDLEBARS --}}
 <div class="container">
     <div class="row">
         <div class="col-8 offset-2">
             <h1>{{msg}}</h1>
-            <h2>Wish List</h2>
+            <h2>This is our Home Page!</h2>
             <form class="clearfix mb-4 create-form">
                 <div class="form-group">
                     <label for="item">Item Description</label>
@@ -113,5 +45,4 @@
 
 
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script src="/js/js.js"></script>
+<script src="/js/index.js"></script>
