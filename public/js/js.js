@@ -130,18 +130,29 @@ $("#loginBtn").on("click", function() {
 
 $("#signUp").on("click", function(event) {
   event.preventDefault();
-  var name = $(".name").val();
-  var email = $(".email").val();
-  var password = $(".password").val();
+  var name = $("#nameUp").val();
+  var email = $("#emailUp").val();
+  var password = $("#passwordUp").val();
   console.log("name: ", name);
   console.log("email: ", email);
   console.log("password: ", password);
+  $.ajax("/api/sign-up", {
+    method: "PUT",
+    data: {
+      name: name,
+      email: email,
+      password: password
+    }
+  }).then(function() {
+    location.reload();
+    // send them to their wishlist
+  });
 });
 
 $("#signIn").on("click", function(event) {
   event.preventDefault();
-  var email = $(".email").val();
-  var password = $(".password").val();
+  var email = $("#emailIn").val();
+  var password = $("#passwordIn").val();
   console.log("email: ", email);
   console.log("password: ", password);
 });

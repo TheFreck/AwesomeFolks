@@ -29,3 +29,14 @@ CREATE TABLE gifts(
 --     comments: "notes to add",
 --     purchased: false
 -- }
+
+-- var loginObject = {
+--     email: "anything@anything.com",
+--     password: "anythingElse"
+-- }
+
+-- var signUpObject = {
+--     name: "J. Doe",
+--     email: "anything @anything.com",
+--     password: "anythingElse"
+-- }
