@@ -11,15 +11,6 @@ module.exports = function(app) {
     });
   });
 
-  // Load example page and pass in an example by id
-  // app.get("/example/:id", function(req, res) {
-  //   db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.render("example", {
-  //       example: dbExample
-  //     });
-  //   });
-  // });
-
   app.get("/api/login", function(req, res) {
     db.Example.findOne({
       where: {
@@ -37,4 +28,25 @@ module.exports = function(app) {
   app.get("*", function(req, res) {
     res.render("404");
   });
+
+  // Load index page
+  app.get("/api/gifts", function(req, res) {
+    db.gift.findAll({}).then(function(data) {
+      var giftObject = {
+        gift: data
+      };
+      res.render("index", giftObject);
+      res.json(data);
+      });
+    });
+
+ // Load example page and pass in an example by id
+ app.get("/api/gifts/:id", function(req, res) {
+  db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
+    res.render("gifts", {
+      example: dbGifts
+    });
+ })
+})
 };
+
