@@ -52,6 +52,32 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
+
+  app.put("/api/login/:email", function(req, res) {
+    console.log("login")
+    db.users
+      .findOne({
+        where: {
+          email: req.params.email
+        }
+      }).then(function() {
+        res.json("login");
+      })
+  });
+
+  app.put("/api/signup/:email", function(req, res) {
+    console.log("signup fired");
+    db.users
+      .findAll({
+        where: {
+          email: req.params.email
+        }
+      }).then(function(response) {
+        console.log("signup api route", response);
+        res.json("sign up");
+      });
+  });
+
 };
 
 // app.put("/api/gifts", function(req, res) {

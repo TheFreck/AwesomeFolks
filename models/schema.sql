@@ -3,14 +3,14 @@ CREATE DATABASE greedyBastards;
 USE greedyBastards;
 
 CREATE TABLE users(
-    id AUTO_INCREMENT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     name varchar(100) NOT NULL,
     password varchar(100) NOT NULL,
     email varchar(100),
     PRIMARY KEY(id)
 );
 CREATE TABLE gifts(
-    id AUTO_INCREMENT NOT NULL,
+    id INT AUTO_INCREMENT NOT NULL,
     item varchar(100),
     url varchar(255),
     category varchar(255),
