@@ -2,26 +2,51 @@ var db = require("../models");
 
 module.exports = function(app) {
   // Load index page
+
   app.get("/", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.render("index", {
-        msg: "What Do You Want From Me?!?",
-        examples: dbExamples
-      });
-    });
+    console.log("req.body    /: ", req.body.tf);
+    var logicObject = {
+      msg: "What Do You Want From Me?!?",
+      loginPage: true
+    };
+    res.render("index", logicObject);
+    console.log("/   ", logicObject);
   });
 
   app.get("/api/login", function(req, res) {
-    db.Example.findOne({
-      where: {
-        id: req.body.email
-      }
-    }).then(function(login){
-      res.render("index", {
-        msg: "Log In",
-        examples: login
-      });
-    });
+    console.log("api login");
+    var logicObject = {
+      msg: "Login",
+      loginPage: true
+    };
+    res.render("index", logicObject);
+  });
+
+  app.get("/api/signup", function(req, res) {
+    console.log("api signup");
+    var logicObject = {
+      msg: "Sign up",
+      signupPage: true
+    };
+    res.render("index", logicObject);
+  });
+
+  app.post("/api/login", function(req, res) {
+    console.log("/api/login: ", req.body.tf);
+    var logicObject = {
+      msg: "Login",
+      loginPage: true
+    };
+    res.json(logicObject)
+  });
+
+  app.post("/api/signup", function(req, res) {
+    console.log("/api/signup: ", req.body.tf);
+    var logicObject = {
+      msg: "Sign up",
+      signupPage: true
+    };
+    res.json(logicObject)
   });
 
   // Render 404 page for any unmatched routes
@@ -37,16 +62,14 @@ module.exports = function(app) {
       };
       res.render("index", giftObject);
       res.json(data);
+    });
+  });
+  // Load example page and pass in an example by id
+  app.get("/api/gifts/:id", function(req, res) {
+    db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
+      res.render("gifts", {
+        example: dbGifts
       });
     });
-
- // Load example page and pass in an example by id
- app.get("/api/gifts/:id", function(req, res) {
-  db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
-    res.render("gifts", {
-      example: dbGifts
-    });
- })
-})
+  });
 };
-

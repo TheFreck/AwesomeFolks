@@ -8,54 +8,31 @@
 
         <h1>{{msg}}</h1>
         
-        <p><span id="isMember" class="show">not</span> already a member? <span id="loginBtn">SIGN UP</span></p>
+
+        {{#if loginPage}}
+        <h1>not </h1>
+        {{/if}}
+        <h1>already a member</h1>
+        {{#if loginPage}}
+        <h1 id="signupBtn" data-status="false">SIGN UP</h1>
+        {{else}}
+        <h1 id="loginBtn" data-status="true">SIGN IN</h1>
+        {{/if}}
         
-        <div class="modality show" id="loginPage">
-          <form>
-            <h1>Sign In</h1>
-            <br>
-            <h2>email: </h2>
-            <br><input type="email" class="email">
-            <br><br>
-            <h2>password: </h2>
-            <br><input type="password" class="password">
-            <br><br>
-            <input type="submit" class="submit" id="signIn">
-          </form>
-        </div>    
+        {{#if loginPage}}
+        <h1>login page</h1>
+        {{> login/login}}
+        {{/if}}
+        {{#if signupPage}}
+        <h1>signup page</h1>
+        {{> signup/signup}}
+        {{/if}}
+        {{#if giftPage}}
+        <h1>gifts page</h1>
+        {{> gifts/gifts}}
+        {{/if}}
 
-        <div class="modality hide" id="signUpPage">
-          <form>
-            <h1>Sign Up</h1>
-            <br>
-            <h2>name: </h2>
-            <br><input type="text" class="name">
-            <br><br>
-            <h2>email: </h2>
-            <br><input type="email" class="email">
-            <br><br>
-            <h2>password: </h2>
-            <br><input type="password" class="password">
-            <br><br>
-            <input type="submit" class="submit" id="signUp">
-          </form>
-        </div>        
-
-        <ul id="example-list" class="list-group">
-
-          {{#each examples}}
-
-          <li data-id="{{this.email}}" class="list-group-item">
-
-            <a href="example/{{this.id}}">{{this.text}}</a>
-
-            <button class="btn btn-danger float-right delete">ｘ</button>
-
-          </li>
-
-          {{/each}}
-
-        </ul>
+        
 
       </div>
 
@@ -63,52 +40,6 @@
 
   </div>
   
-</div>
-
-{{!-- WISH LIST PAGE THAT IS ALSO ON GIFTS.HANDLEBARS --}}
-<div class="container">
-    <div class="row">
-        <div class="col-8 offset-2">
-            <h1>{{msg}}</h1>
-            <h2>Wish List</h2>
-            <form class="clearfix mb-4 create-form">
-                <div class="form-group">
-                    <label for="item">Item Description</label>
-                    <input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
-                    <label for="url">URL (if known)</label>
-                    <textarea class="form-control" id="url" aria-describedby="url" placeholder="Enter URL of item if known"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="category">Category</label>
-                    <textarea class="form-control" id="category" aria-describedby="category" placeholder="Enter Category"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="price">Price</label>
-                    <textarea class="form-control" id="price" aria-describedby="price" placeholder="Enter Price (if known)"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="comments">Comments</label>
-                    <textarea class="form-control" id="comments" aria-describedby="comments" placeholder="Enter additional info such as size, color, etc"></textarea>
-                </div>
-                <button id="submit" class="btn btn-primary float-right">Submit</button>
-            </form>
-
-            <h3>Wish List:</h3>
-            <ul id="wishList" class="list-group">
-                {{#each gift}}
-                <li data-id="{{this.id}}" class="list-group-item">
-                    <a href="""{{this.id}}">{{this.item}}</a>
-                    <p>{{this.url}}</p>
-                    <p>{{this.category}}</p>
-                    <p>{{this.price}}</p>
-                    <p>{{this.comments}}</p>
-                    <button class="btn btn-danger float-right delete">ｘ</button>
-                    <button class="btn btn-info float-right edit">EDIT</button>
-                </li>
-                {{/each}}
-            </ul>
-        </div>
-    </div>
 </div>
 
 

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) {
-  var Gifts = sequelize.define("gift", {
+  var Users = sequelize.define("user", {
     item: {
       type: DataTypes.STRING,
       allowNull: false
@@ -11,19 +11,12 @@ module.exports = function(sequelize, DataTypes) {
         isEmail: true
       }
     },
-    category: {
+    name: {
       type: DataTypes.STRING
     },
-    price: {
-      type: DataTypes.DECIMAL(10, 2)
-    },
-    comments: {
+    password: {
       type: DataTypes.STRING
-    },
-    purchased: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
     }
   });
-  return Gifts;
+  return Users;
 };
