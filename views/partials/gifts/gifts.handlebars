@@ -3,45 +3,42 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>{{msg}}</h1>
-        <h2>This is our Home Page!</h2>
+        <h2>Greedy Bastard List</h2>
         <form class="clearfix mb-4 create-form">
           <div class="form-group">
             <label for="item">Item Description</label>
             <input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
-   <label for="url">URL (if known)</label>
+            <label for="url">URL (if known)</label>
             <textarea class="form-control" id="url" aria-describedby="url" placeholder="Enter URL of item if known"></textarea>
 
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label for="category">Category</label>
             <textarea class="form-control" id="category" aria-describedby="category" placeholder="Enter Category"></textarea>
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label for="price">Price</label>
             <textarea class="form-control" id="price" aria-describedby="price" placeholder="Enter Price (if known)"></textarea>
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label for="comments">Comments</label>
             <textarea class="form-control" id="comments" aria-describedby="comments" placeholder="Enter additional info such as size, color, etc"></textarea>
           </div>
           <button id="submit" class="btn btn-primary float-right">Submit</button>
         </form>
 
-        <h3>Wish List:</h3>
+
+        <h3>I WANT THIS STUFF</h3>
         <ul id="wishList" class="list-group">
           {{#each gift}}
           <li data-id="{{this.id}}" class="list-group-item">
-            <a href="""{{this.id}}">{{this.item}}</a>
+            <h4>{{this.item}}</h4>
             <p>{{this.url}}</p>
             <p>{{this.category}}</p>
             <p>{{this.price}}</p>
             <p>{{this.comments}}</p>
-            <button class="btn btn-danger float-right delete">ｘ</button>
+            <button class="btn btn-danger float-right delete">DELETE</button>
             <button class="btn btn-info float-right edit">EDIT</button>
-        <form action="http://www.google.com/search" method="get">
-            <input type="text" name="q" value="{{this.item}}"/>
-            <input type="submit" value="Find Me Online" />
-        </form>
           </li>
           {{/each}}
         </ul>
@@ -49,10 +46,3 @@
     </div>
   </div>
 </div>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="/js/index.js"></script>
-
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script src="/js/js.js"></script>

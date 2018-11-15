@@ -37,7 +37,7 @@ module.exports = function(app) {
       msg: "Login",
       loginPage: true
     };
-    res.json(logicObject)
+    res.json(logicObject);
   });
 
   app.post("/api/signup", function(req, res) {
@@ -46,7 +46,7 @@ module.exports = function(app) {
       msg: "Sign up",
       signupPage: true
     };
-    res.json(logicObject)
+    res.json(logicObject);
   });
 
   // Render 404 page for any unmatched routes

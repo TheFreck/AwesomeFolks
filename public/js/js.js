@@ -12,7 +12,7 @@ $("#loginBtn").on("click", function(event) {
   };
   console.log("login loginSwitch: ", loginSwitch);
   console.log("button hit", logSwitch);
-  
+
   $.ajax("/api/login", {
     method: "POST",
     data: loginSwitch
@@ -132,7 +132,6 @@ $(".delete").on("click", function() {
 // });
 
 // $(".edit").on("click", function () {
-// 
 //   $.ajax("/api/gifts/", {
 //     type: "PUT",
 //     data: gifts

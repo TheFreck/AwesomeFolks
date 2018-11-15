@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+      <div class="col-8 offset-2">
+         <h2>The Greedy Bastard List</h2>
+        
+         <h3>BUY ME THIS....NOW!</h3>
+        <ul id="wishList" class="list-group">
+          {{#each gift}}
+          <li data-id="{{this.id}}" class="list-group-item">
+            <h4>{{this.item}}</h4>
+            <p>{{this.url}}</p>
+            <p>{{this.category}}</p>
+            <p>{{this.price}}</p>
+            <p>{{this.comments}}</p>
+            <button class="btn btn-success float-right delete">PURCHASE</button>
+            <button class="btn btn-warning float-right shopping">ADD TO SHOPPING LIST</button>
+        <form action="http://www.google.com/search" method="get">
+            <input type="text" class="itemInput" name="q" value="{{this.item}}"/>
+            <input type="submit" value="Find Me Online" />
+        </form>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+    </div>
+  </div>
