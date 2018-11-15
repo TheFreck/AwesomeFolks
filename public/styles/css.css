@@ -24,3 +24,7 @@
 #signupBtn{
   cursor: pointer;
 }
+
+.itemInput {
+  display: none;
+}
