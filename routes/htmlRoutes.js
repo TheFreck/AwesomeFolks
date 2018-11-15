@@ -4,17 +4,17 @@ module.exports = function(app) {
   // Load index page
 
   app.get("/", function(req, res) {
-    console.log("req.body    /: ", req.body.tf);
+    // console.log("req.body    /: ", req.body.tf);
     var logicObject = {
       msg: "What Do You Want From Me?!?",
       loginPage: true
     };
     res.render("index", logicObject);
-    console.log("/   ", logicObject);
+    // console.log("/   ", logicObject);
   });
 
   app.get("/api/login", function(req, res) {
-    console.log("api login");
+    // console.log("api login");
     var logicObject = {
       msg: "Login",
       loginPage: true
@@ -23,7 +23,7 @@ module.exports = function(app) {
   });
 
   app.get("/api/signup", function(req, res) {
-    console.log("api signup");
+    // console.log("api signup");
     var logicObject = {
       msg: "Sign up",
       signupPage: true
