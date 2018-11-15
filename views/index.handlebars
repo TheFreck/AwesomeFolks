@@ -8,7 +8,16 @@
 
         <h1>{{msg}}</h1>
         
-        <p><span id="isMember" class="show">not</span> already a member? <span id="loginBtn">SIGN UP</span></p>
+
+        {{#if loginPage}}
+        <h1>not </h1>
+        {{/if}}
+        <h1>already a member</h1>
+        {{#if loginPage}}
+        <h1 id="signupBtn" data-status="false">SIGN UP</h1>
+        {{else}}
+        <h1 id="loginBtn" data-status="true">SIGN IN</h1>
+        {{/if}}
         
         {{#if loginPage}}
         <h1>login page</h1>

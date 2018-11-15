@@ -14,18 +14,20 @@ module.exports = function(app) {
   });
 
   app.get("/api/login", function(req, res) {
+    console.log("api login");
     var logicObject = {
       msg: "Login",
       loginPage: true
-    }
+    };
     res.render("index", logicObject);
   });
 
   app.get("/api/signup", function(req, res) {
+    console.log("api signup");
     var logicObject = {
       msg: "Sign up",
       signupPage: true
-    }
+    };
     res.render("index", logicObject);
   });
 
@@ -35,7 +37,7 @@ module.exports = function(app) {
       msg: "Login",
       loginPage: true
     };
-    res.render("index", logicObject);
+    res.json(logicObject)
   });
 
   app.post("/api/signup", function(req, res) {
@@ -44,7 +46,7 @@ module.exports = function(app) {
       msg: "Sign up",
       signupPage: true
     };
-    res.render("index", logicObject);
+    res.json(logicObject)
   });
 
   // Render 404 page for any unmatched routes
@@ -62,7 +64,6 @@ module.exports = function(app) {
       res.json(data);
     });
   });
-
   // Load example page and pass in an example by id
   app.get("/api/gifts/:id", function(req, res) {
     db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
