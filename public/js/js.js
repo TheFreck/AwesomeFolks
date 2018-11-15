@@ -2,9 +2,7 @@
 // sign IN or sign UP
 // *****************************************************************
 
-var logSwitch;
-
-$("#loginBtn").on("click", function(event) {
+$("#loginBtn").on("click", function() {
   console.log("logSwitch", logSwitch);
   logSwitch = false;
   var loginSwitch = {
@@ -13,7 +11,7 @@ $("#loginBtn").on("click", function(event) {
   console.log("login loginSwitch: ", loginSwitch);
   console.log("button hit", logSwitch);
 
-  $.ajax("/api/login", {
+  $.ajax("/api/login/", {
     method: "POST",
     data: loginSwitch
   }).then(function(data) {
@@ -42,10 +40,13 @@ $("#signUp").on("click", function(event) {
   var name = $("#nameUp").val();
   var email = $("#emailUp").val();
   var password = $("#passwordUp").val();
+  var confirmPassword = $("#passwordConfirm").val();
   console.log("name: ", name);
   console.log("email: ", email);
   console.log("password: ", password);
-  $.ajax("/api/signup" + name, {
+  console.log("confirm password: ", confirmPassword);
+
+  $.ajax("/api/signup/" + name, {
     method: "PUT",
     data: {
       name: name,
