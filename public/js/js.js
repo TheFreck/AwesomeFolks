@@ -70,11 +70,9 @@ $("#signIn").on("click", function(event) {
   });
 });
 
-// // Get references to page elements
-// var $exampleText = $("#example-text");
-// var $exampleDescription = $("#example-description");
-// var $submitBtn = $("#submit");
-// var $exampleList = $("#example-list");
+// *****************************************************************
+// CREATE WISH LIST
+// *****************************************************************
 
 $(".create-form").on("submit", function(event) {
   // Make sure to preventDefault on a submit event.
@@ -98,14 +96,16 @@ $(".create-form").on("submit", function(event) {
   });
 });
 
+// *****************************************************************
+// DELETE ITEM FROM WISH LIST
+// *****************************************************************
+
 $(".delete").on("click", function() {
   console.log("CLICKED");
   var id = $(this)
     .parent()
     .attr("data-id");
-  // var id = $(this).data("id");
-  // console.log("this has been clicked")
-
+ 
   // Send the DELETE request.
   $.ajax("/api/gifts/" + id, {
     type: "DELETE"
@@ -115,21 +115,32 @@ $(".delete").on("click", function() {
   });
 });
 
-// //SEARCH
-// $(".search").on("click", function() {
-//   // var item = $(this)
-//   //   .parent()
-//   //   .attr("data-item");
-//   console.log("clicked");
-//   $.ajax({
-//     url: "https://www.google.com/search",
-//     // url: "https://www.google.com/=" + $("#item").val(),
-//     type: "GET"
-//   }).then(function() {
-//     // Reload the page to get the updated list
-//     location.reload();
-//   });
-// });
+// *****************************************************************
+// VIEW FRIENDS LIST
+// *****************************************************************
+
+$(".viewFriend").on("click", function() {
+  console.log("CLICKED VIEW FRIEND");
+  var id = $(this)
+    .parent()
+    .attr("data-id");
+ 
+  // Send the DELETE request.
+  $.ajax("/api/view/" + id, {
+    type: "GET"
+  }).then(function() {
+    res.json
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
+
+
+
+// *****************************************************************
+// EDIT ITEM ON WISH LIST
+// *****************************************************************
+
 
 // $(".edit").on("click", function () {
 //   $.ajax("/api/gifts/", {

@@ -12,6 +12,18 @@ module.exports = function(app) {
     });
   });
 
+  app.get("/api/view", function(req, res) {
+    db.gift.findAll({}).then(function(data) {
+      var giftObject = {
+        gift: data
+      };
+      res.render("index", giftObject);
+      // res.json(data);
+    });
+  });
+  
+
+
   app.get("/api/gifts/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
     db.gift
