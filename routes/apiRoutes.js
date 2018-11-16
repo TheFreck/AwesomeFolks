@@ -7,9 +7,14 @@ module.exports = function(app) {
       var giftObject = {
         gift: data
       };
-      res.render("index", giftObject);
+      res.render("gifts", giftObject);
       // res.json(data);
     });
+  });
+
+  app.get("/api/decisions", function(req, res) {
+    res.render("decisions");
+      // res.json(data);
   });
 
   app.get("/api/view", function(req, res) {
@@ -17,13 +22,11 @@ module.exports = function(app) {
       var giftObject = {
         gift: data
       };
-      res.render("index", giftObject);
+      res.render("viewGifts", giftObject);
       // res.json(data);
     });
   });
   
-
-
   app.get("/api/gifts/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
     db.gift

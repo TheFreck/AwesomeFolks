@@ -122,21 +122,17 @@ $(".delete").on("click", function() {
 
 $(".viewFriend").on("click", function() {
   console.log("CLICKED VIEW FRIEND");
-  var id = $(this)
-    .parent()
-    .attr("data-id");
- 
-  // Send the DELETE request.
-  $.ajax("/api/view/" + id, {
-    type: "GET"
-  }).then(function() {
-    res.json
-    // Reload the page to get the updated list
-    location.reload();
-  });
+  location.href = "/api/view";
 });
 
+// *****************************************************************
+// VIEW MY GIFT LIST
+// *****************************************************************
 
+$(".createRegistry").on("click", function() {
+  console.log("CLICKED VIEW FRIEND");
+  location.href = "/api/gifts";
+});
 
 // *****************************************************************
 // EDIT ITEM ON WISH LIST
