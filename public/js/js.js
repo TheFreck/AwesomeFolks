@@ -86,7 +86,6 @@ $(".create-form").on("submit", function(event) {
     price: $("#price").val(),
     comments: $("#comments").val()
   };
-
   // Send the POST request.
   $.ajax("/api/gifts/", {
     type: "POST",
@@ -106,7 +105,7 @@ $(".delete").on("click", function() {
   var id = $(this)
     .parent()
     .attr("data-id");
- 
+
   // Send the DELETE request.
   $.ajax("/api/gifts/" + id, {
     type: "DELETE"
@@ -139,12 +138,14 @@ $(".createRegistry").on("click", function() {
 // *****************************************************************
 
 
-// $(".edit").on("click", function () {
-//   $.ajax("/api/gifts/", {
-//     type: "PUT",
-//     data: gifts
-//   }).then(function () {
-//     // Reload the page to get the updated list
-//     location.reload();
-//   });
-// });
+$(".shopping").on("click", function () {
+  $.ajax("/api/gifts/", {
+    type: "PUT",
+    data: gifts
+  }).then(function () {
+    // Reload the page to get the updated list
+    location.reload();
+  });
+});
+
+
