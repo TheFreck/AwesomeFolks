@@ -1,4 +1,19 @@
+"use strict";
+
 module.exports = function(sequelize, DataTypes) {
+  var Users = sequelize.define("user", {
+    email: {
+        type: DataTypes.STRING,
+        isEmail: true
+    },
+    name: {
+      type: DataTypes.STRING
+    },
+    password: {
+      type: DataTypes.STRING
+    }
+  });
+
   var Gifts = sequelize.define("gift", {
     item: {
       type: DataTypes.STRING,
@@ -25,5 +40,14 @@ module.exports = function(sequelize, DataTypes) {
       defaultValue: false
     }
   });
-  return Gifts;
+
+  Gifts.belongsTo(Users);
+
+  Users.sync();
+  Gifts.sync();
+
+  return {
+    Users: Users,
+    Gifts: Gifts
+  };
 };
