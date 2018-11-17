@@ -10,11 +10,18 @@
             <input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
             <label for="url">URL (if known)</label>
             <textarea class="form-control" id="url" aria-describedby="url" placeholder="Enter URL of item if known"></textarea>
-
           </div>
+
           <div class="form-group">
             <label for="category">Category</label>
-            <textarea class="form-control" id="category" aria-describedby="category" placeholder="Enter Category"></textarea>
+            {{!-- <textarea class="form-control" id="category" aria-describedby="category" placeholder="Enter Category"></textarea> --}}
+           <select name="category" id="category">
+              <option value="electronics">Electronics</option>
+              <option value="housewares">Housewares</option>
+              <option value="clothing">Clothing</option>
+              <option value="entertainment">Entertainment</option>
+              <option value="other">Other</option>
+            </select>
           </div>
           <div class="form-group">
             <label for="price">Price</label>

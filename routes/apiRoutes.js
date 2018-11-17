@@ -1,12 +1,10 @@
 var db = require("../models/");
 
-
 module.exports = function(app) {
   // Find all Gifts and return them to the user with res.json
   app.get("/api/gifts", function(req, res) {
-    db.gift
-    .findAll({}).then(function(data) {
-    var giftObject = {
+    db.gift.findAll({}).then(function(data) {
+      var giftObject = {
         gift: data
       };
       res.render("gifts", giftObject);
@@ -14,11 +12,9 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/api/decisions", function(req, res) {
     res.render("decisions");
   });
-
 
   app.get("/api/view", function(req, res) {
     db.gift.findAll({}).then(function(data) {
@@ -29,9 +25,6 @@ module.exports = function(app) {
       // res.json(data);
     });
   });
-
-
-
 
   app.get("/api/gifts/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
@@ -46,6 +39,10 @@ module.exports = function(app) {
       });
   });
 
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  // ADDED CODE TO PULL DROP DOWN CATEGORY
+  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+
   app.post("/api/gifts/", function(req, res) {
     db.gift
       .create({
@@ -58,6 +55,7 @@ module.exports = function(app) {
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
+        console.log(req.body.category);
       });
   });
 
