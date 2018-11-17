@@ -3,10 +3,17 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var cors = require("cors");
 var app = express();
+var session = require("express-session");
+
+var passport = require("passport");
+var flash = require("connect-flash");
+var cookieParser = require("cookie-parser");
 
 app.use(cors());
 
 var db = require("./models");
+
+require('./config/passport')(passport);
 
 var PORT = process.env.PORT || 3000;
 
@@ -22,11 +29,27 @@ app.engine(
     defaultLayout: "main"
   })
 );
+
 app.set("view engine", "handlebars");
+
+app.use(session({
+  key: 'user_sid',
+  secret: 'goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    expires: 600000
+  }
+}));
+
+app.use(passport.initialize());
+app.use(passport.session()); // persistent login sessions
+app.use(flash());
 
 // Routes
 require("./routes/apiRoutes")(app);
 require("./routes/htmlRoutes")(app);
+require("./routes/account-controller")(app, passport);
 
 var syncOptions = { force: false };
 

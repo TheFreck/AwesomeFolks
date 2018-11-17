@@ -1,76 +1,115 @@
-// config/passport.js
+var LocalStrategy = require('passport-local').Strategy;
 
-// load all the things we need
-var LocalStrategy = require("passport-local").Strategy;
+var db  = require('../models');
 
-// load up the user model
-var User = require("../app/models/user");
-
-// expose this function to our app using module.exports
 module.exports = function(passport) {
-  // =========================================================================
-  // passport session setup ==================================================
-  // =========================================================================
-  // required for persistent login sessions
-  // passport needs ability to serialize and unserialize users out of session
 
-  // used to serialize the user for the session
-  passport.serializeUser(function(user, done) {
-    done(null, user.id);
-  });
+    // =========================================================================
+    // passport session setup
+    // =========================================================================
 
-  // used to deserialize the user
-  passport.deserializeUser(function(id, done) {
-    User.findById(id, function(err, user) {
-      done(err, user);
+    // tags the user as logged in or logged out
+
+    passport.serializeUser(function(user, done) {
+        console.log("user.uuid", user.uuid);
+        done(null, user.uuid);
     });
-  });
 
-  // =========================================================================
-  // LOCAL SIGNUP ============================================================
-  // =========================================================================
-  // we are using named strategies since we have one for login and one for signup
-  // by default, if there was no name, it would just be called 'local'
-
-  passport.use('local-signup', new LocalStrategy({
-    // by default, local strategy uses username and password, we will override with email
-    usernameField: 'email',
-    passwordField: 'password',
-    passReqToCallback: true // allows us to pass back the entire request to the callback
-    },
-    function(req, email, password, done) {
-  // asynchronous
-  // User.findOne wont fire unless data is sent back
-    process.nextTick(function() {
-
-    // find a user whose email is the same as the forms email
-    // we are checking to see if the user trying to login already exists
-      User.findOne({ "local.email": email }, function(err, user) {
-        // if there are any errors, return the error
-        if (err) return done(err);
-
-        // check to see if theres already a user with that email
+    passport.deserializeUser(function(uuid, done) {
+        db.user.findById(uuid).then(function(user) {
         if (user) {
-            return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            done(null, user.get());
         } else {
-
-        // if there is no user with that email
-        // create the user
-          var newUser = new User();
-
-        // set the user's local credentials
-          newUser.local.email = email;
-          newUser.local.password = newUser.generateHash(password);
-
-        // save the user
-          newUser.save(function(err) {
-            if (err) throw err;
-            return done(null, newUser);
-            });
-          };
+            done(user.errors, null);
+        }
         });
-      });
-    };
-    )
-  );
+    });
+
+    // =========================================================================
+    // LOCAL SIGNUP
+    // =========================================================================
+
+    passport.use('local-signup', new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'account_key',
+        passReqToCallback: true
+    },
+    function(req, email, account_key, done) {
+        process.nextTick(function() {
+        // does the user already exist?
+
+        db.user.findOne({
+            where: {
+            	email: email
+            }
+        }).then(function(user, err){
+        	if(err) {
+                console.log("err",err)
+                return done(err);
+            } 
+
+            // is that email already taken?
+            if (user) {
+
+            	console.log('signupMessage', 'That email is already taken.');
+                return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+            } else {
+                // if not make a new user
+                db.user.create({
+                            name: req.body.name,
+						    email: req.body.email,
+						    account_key: db.user.generateHash(account_key)
+
+						    }).then(function(dbUser) {
+						      return done(null, dbUser);
+
+						    }).catch(function (err) {
+						      // handle error;
+						      console.log(err);
+						    }); 
+            }
+          });   
+        });
+
+}));
+
+    // =========================================================================
+    // LOCAL LOGIN 
+    // =========================================================================
+
+passport.use('local-login', new LocalStrategy({
+        usernameField: 'email',
+        passwordField: 'account_key',
+        passReqToCallback: true
+    },
+    function(req, email, account_key, done) { 
+        // does this user already exist?
+        db.user.findOne({
+            where: {
+                email: req.body.email 
+            }
+        }).then(function(user, err) {
+            
+            if(err) throw err;
+
+            if (!user){
+                console.log("no user found");
+                return done(null, false, req.flash('loginMessage', 'No user found.'));
+            }
+                
+
+            // if the user exists but fails password
+            if (user && !user.validPassword(req.body.account_key)){
+
+                return done(null, false, req.flash('loginMessage', 'Oops! Wrong password.'));
+            }
+
+            // all is well, return successful user
+
+            return done(null, user);
+         
+            // all is well, return successful user
+
+        });
+    }));
 };

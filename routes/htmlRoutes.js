@@ -1,10 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/", function(req, res) {
-    res.render("login");
-  });
-
   app.get("/login", function(req, res) {
     res.render("login");
   });
@@ -59,57 +55,52 @@ module.exports = function(app) {
     });
   });
 };
-  // Load index page
 
-  // app.get("/", function(req, res) {
-  //   console.log("req.body    /: ", req.body.tf);
-  //   var logicObject = {
-  //     msg: "What Do You Want From Me?!?",
-  //     loginPage: true
-  //   };
-  //   res.render("index", logicObject);
-  //   console.log("/   ", logicObject);
-  // });
+// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  // app.get("/api/login/", function(req, res) {
-  //   console.log("api login");
-  //   var logicObject = {
-  //     msg: "Login",
-  //     loginPage: true
-  //   };
-  //   res.render("index", logicObject);
-  // });
+module.exports = function(app){
 
-  // app.get("/api/signup/", function(req, res) {
-  //   console.log("api signup");
-  //   var logicObject = {
-  //     msg: "Sign up",
-  //     signupPage: true
-  //   };
-  //   res.render("index", logicObject);
-  // });
+  app.get("/", function(req,res){
+    console.log("/");
+      if(req.isAuthenticated()){
+          var user = {
+              id: req.session.passport.user,
+              isloggedin: req.isAuthenticated()
+          }
+          res.render("index", user);
+      }
+      else{
+          res.render("login");
+      }
+      
+  })
 
-  // app.post("/api/login/", function(req, res) {
-  //   console.log("/api/login: ", req.body.tf);
-  //   var logicObject = {
-  //     msg: "Login",
-  //     loginPage: true
-  //   };
-  //   res.json(logicObject);
-  // });
 
-  // app.post("/api/signup/", function(req, res) {
-  //   console.log("/api/signup: ", req.body.tf);
-  //   var logicObject = {
-  //     msg: "Sign up",
-  //     signupPage: true
-  //   };
-  //   res.json(logicObject);
-  // });
+  app.get("/signup", function(req,res){
+    console.log("/signup");
+      if(req.isAuthenticated()){
+          res.redirect("/index");
+      }else{
+         res.render("signup"); 
+      }
+  });
 
-  // // Render 404 page for any unmatched routes
-  // app.get("*", function(req, res) {
-  //   res.render("404");
-  // });
+  app.get("/index", function(req,res){
+      if(req.isAuthenticated()){
+          res.render("index");
+      }else{
+          res.redirect("/login");
+      }
+  });
+  
+  app.get("/login", function(req, res) {
+    console.log("/login");
+      if(req.isAuthenticated()){
+          res.redirect("/index");
+      }else{
+          res.render("login");
+      }
+  })
 
-  // // Load index page
+
+};

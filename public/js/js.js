@@ -1,73 +1,54 @@
-// *****************************************************************
-// sign IN or sign UP
-// *****************************************************************
-
-$("#loginBtn").on("click", function() {
-  console.log("logSwitch", logSwitch);
-  logSwitch = false;
-  var loginSwitch = {
-    tf: true
-  };
-  console.log("login loginSwitch: ", loginSwitch);
-  console.log("button hit", logSwitch);
-
-  $.ajax("/api/login/", {
-    method: "POST",
-    data: loginSwitch
-  }).then(function(data) {
-    console.log("fired here", data);
-    location.href = "/api/login";
-  });
-});
-
-$("#signupBtn").on("click", function() {
-  logSwitch = true;
-  var loginSwitch = {
-    tf: false
-  };
-  $.ajax("/api/signup", {
-    method: "POST",
-    data: loginSwitch
-  }).then(function(data) {
-    console.log("fired signup", data);
-    location.href = "/api/signup";
-  });
-  console.log("signup loginSwitch: ", logSwitch);
-});
-
-$("#signUp").on("click", function(event) {
+$("#signUp").on("click", function (event) {
   event.preventDefault();
-  var name = $("#nameUp").val();
-  var email = $("#emailUp").val();
-  var password = $("#passwordUp").val();
-  var confirmPassword = $("#passwordConfirm").val();
-  console.log("name: ", name);
-  console.log("email: ", email);
-  console.log("password: ", password);
-  console.log("confirm password: ", confirmPassword);
 
-  $.ajax("/api/signup/" + name, {
-    method: "PUT",
-    data: {
-      name: name,
-      email: email,
-      password: password
-    }
-  });
+  console.log("Entered add account button.")
+  var newAccount = {
+    name: $("#nameUp").val().trim(),
+    email: $("#emailUp").val().trim(),
+    account_key: $("#passwordUp").val().trim(),
+    account_key2: $("#passwordConfirm").val().trim()
+  };
+  console.log("newAccount: ", newAccount);
+  if (newAccount.account_key.length > 0 && newAccount.email.length > 0 && newAccount.account_key.length > 0 && newAccount.name.length > 0) {
+    if(newAccount.account_key === newAccount.account_key2){
+      $.post("/signup", newAccount, function(results) {
+        console.log("login");
+        window.location.href = "/";
+      })
+      
+    } else {
+      console.log("**passwords don't match**");
+      $("#create-err-msg").empty("").text("**Passwords don't match**");
+      console.log("password: ", newAccount.passwordUp)
+    };
+  } else {
+    console.log("**Please fill out entire form**");
+    $("#create-err-msg").empty("").text("**Please fill out entire form**");
+  }
 });
 
 $("#signIn").on("click", function(event) {
   event.preventDefault();
-  var email = $("#emailIn").val();
-  var password = $("#passwordIn").val();
-  console.log("email: ", email);
-  console.log("password: ", password);
-  $.ajax("/api/login" + name, {
-    method: "POST",
-    data: {
-      email: email,
-      password: password
+  var user = {
+    email: $("#emailIn").val().trim(),
+    account_key: $("#passwordIn").val().trim()
+  }
+
+  $.post("/login", user, function(results) {
+    if(results) {
+      $(location).attr('href', '/index')
+    }else {
+      $("#account-info").modal("close");
+      alert("oops something went wrong, please try again!");
     }
+  });
+});
+
+$("#logout").on("click", function(event) {
+  event.preventDefault();
+  $.get("/logout", function(results) {
+    console.log("results: ", results);
+    $(location).attr("href", "/");
   });
 });
 
