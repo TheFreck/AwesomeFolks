@@ -19,10 +19,8 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  //   user.associate = function(models) {
-  // Associating Author with Posts
-  // When an Author is deleted, also delete any associated Posts
-  // user.hasMany(models.gift);
-
+  Users.associate = function(models) {
+    Users.hasMany(models.gift);
+  };
   return Users;
 };

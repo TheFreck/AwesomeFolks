@@ -26,15 +26,15 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  // gift.belongsTo(user);
-  // // User.hasMany(Gifts, {foreignKey: 'id'});
-  // // gift.associate = function(models) {
-  // //     // We're saying that a Post should belong to an Author
-  // //     // A Post can't be created without an Author due to the foreign key constraint
-  // //     gift.belongsTo(models.user, {
-  // //       foreignKey: {
-  // //         allowNull: false
-  // //       }
-  // //     });
+  Gifts.associate = function(models) {
+    // We're saying that a Post should belong to an Author
+    // A Post can't be created without an Author due to the foreign key constraint
+    Gifts.belongsTo(models.user, {
+      foreignKey: {
+        allowNull: false
+      }
+    });
+  };
+
   return Gifts;
 };
