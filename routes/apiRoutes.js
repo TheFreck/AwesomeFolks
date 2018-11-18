@@ -16,6 +16,7 @@ module.exports = function(app) {
     res.render("decisions");
   });
 
+
   app.get("/api/view", function(req, res) {
     db.gift.findAll({}).then(function(data) {
       var giftObject = {
@@ -31,13 +32,33 @@ module.exports = function(app) {
     db.gift
       .findOne({
         where: {
-          id: req.params.id
+          userUuid: req.params.id
         }
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
       });
   });
+
+  // app.get("/api/gifts/:id", function(req, res) {
+    
+//     // Find one Gift with the id in req.params.id and return them to the user with res.json
+//     db.gift
+//       .findOne({
+//         where: {
+//           uuid: req.params.uuid
+//         },
+//         include: [db.gift]
+//       })
+//       .then(function(dbgifts) {
+// console.log(uuid)
+//         res.json(dbgifts);
+//         console.log(dbgifts);
+//       });
+//   });
+
+
+
 
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   // ADDED CODE TO PULL DROP DOWN CATEGORY
@@ -51,7 +72,7 @@ module.exports = function(app) {
         category: req.body.category,
         price: req.body.price,
         comment: req.body.comment,
-        purchased: req.body.purchased
+        shopping: req.body.shopping
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
@@ -72,6 +93,8 @@ module.exports = function(app) {
       });
   });
 };
+
+
 
 // app.put("/api/gifts", function(req, res) {
 //   db.gift
