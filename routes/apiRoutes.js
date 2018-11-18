@@ -45,6 +45,7 @@ module.exports = function(app) {
 
   app.post("/api/gifts/", function(req, res) {
     console.log("adding an item: ", req.user.uuid);
+    console.log(req.session);
     db.gift
       .create({
         item: req.body.item,
