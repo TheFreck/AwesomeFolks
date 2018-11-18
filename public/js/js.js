@@ -129,4 +129,18 @@ $(".shopping").on("click", function () {
   });
 });
 
+// ****************BUTTON FOR EACH USER************************
+$("#seeGifts").on("click", function() {
+  var uuid = $("#seeGifts").attr("data-uuid")
+  $.get("/api/gifts/" + uuid).then(function() {
+    // Reload the page to get the updated list
+    
+    location.reload();
+  });
+});
+
+// ****************BUTTON FOR EACH USER************************
+
+
+
 

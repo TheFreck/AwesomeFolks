@@ -76,6 +76,21 @@ module.exports = function(app){
   })
 
 
+  // ***********Grab list of users************
+  app.get("/users", function(req, res) {
+    db.user.findAll().then(function (users){
+      res.render("decisions", {
+        users: users
+      }).then(function(dbgift) {
+        users: 
+      }
+      )
+    })
+  })
+
+    // ***********Grab list of users************
+
+
   app.get("/signup", function(req,res){
     console.log("/signup");
       if(req.isAuthenticated()){
