@@ -21,7 +21,7 @@ module.exports = function(app) {
     res.render("index");
   });
 
-// Render 404 page for any unmatched routes
+  // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
   });
@@ -58,64 +58,58 @@ module.exports = function(app) {
 
 // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-module.exports = function(app){
-
-  app.get("/", function(req,res){
+module.exports = function(app) {
+  app.get("/", function(req, res) {
     console.log("/");
-      if(req.isAuthenticated()){
-          var user = {
-              id: req.session.passport.user,
-              isloggedin: req.isAuthenticated()
-          }
-          res.render("index", user);
-      }
-      else{
-          res.render("login");
-      }
-      
-  })
-
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render("index", user);
+    } else {
+      res.render("login");
+    }
+  });
 
   // ***********Grab list of users************
   app.get("/users", function(req, res) {
-    db.user.findAll().then(function (users){
-      res.render("decisions", {
-        users: users
-      }).then(function(dbgift) {
-        users: 
-      }
-      )
-    })
-  })
+    db.user.findAll().then(function(users) {
+      res
+        .render("decisions", {
+          users: users
+        })
+        .then(function(dbgift) {
+          // users:
+        });
+    });
+  });
 
-    // ***********Grab list of users************
+  // ***********Grab list of users************
 
-
-  app.get("/signup", function(req,res){
+  app.get("/signup", function(req, res) {
     console.log("/signup");
-      if(req.isAuthenticated()){
-          res.redirect("/index");
-      }else{
-         res.render("signup"); 
-      }
+    if (req.isAuthenticated()) {
+      res.redirect("/index");
+    } else {
+      res.render("signup");
+    }
   });
 
-  app.get("/index", function(req,res){
-      if(req.isAuthenticated()){
-          res.render("index");
-      }else{
-          res.redirect("/login");
-      }
+  app.get("/index", function(req, res) {
+    if (req.isAuthenticated()) {
+      res.render("index");
+    } else {
+      res.redirect("/login");
+    }
   });
-  
+
   app.get("/login", function(req, res) {
     console.log("/login");
-      if(req.isAuthenticated()){
-          res.redirect("/index");
-      }else{
-          res.render("login");
-      }
-  })
-
-
+    if (req.isAuthenticated()) {
+      res.redirect("/index");
+    } else {
+      res.render("login");
+    }
+  });
 };
