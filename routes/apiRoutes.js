@@ -65,6 +65,7 @@ module.exports = function(app) {
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
   app.post("/api/gifts/", function(req, res) {
+    console.log(req.session);
     db.gift
       .create({
         item: req.body.item,
@@ -72,7 +73,8 @@ module.exports = function(app) {
         category: req.body.category,
         price: req.body.price,
         comment: req.body.comment,
-        shopping: req.body.shopping
+        purchased: req.body.purchased,
+        userUuid: req.session.passport.user
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
