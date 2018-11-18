@@ -74,13 +74,13 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/gifts/:id", function(req, res) {
-    db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
-      res.render("gifts", {
-        example: dbGifts
-      });
-    });
-  });
+  // app.get("/api/gifts/:id", function(req, res) {
+  //   db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
+  //     res.render("gifts", {
+  //       example: dbGifts
+  //     });
+  //   });
+  // });
 
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
@@ -99,10 +99,8 @@ module.exports = function(app) {
 
   // ***********Grab list of users************
   app.get("/users", function(req, res) {
-    db.user.findAll().then(function(users) {
-      res.render("decisions", { users: users }).then(function(dbgift) {
-        console.log("dbgift: ", dbgift);
-      });
+    db.user.findAll().then(function(user) {
+      res.render("decisions", { user: user })
     });
   });
 
