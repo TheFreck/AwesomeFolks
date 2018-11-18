@@ -10,14 +10,14 @@ module.exports = function(app) {
   // otherwise it goes to the login page
   // which has access to the signup page
 
-  app.get("/", function(req, res) {
-    console.log("/");
+  app.get("/decisions", function(req, res) {
+    console.log("decisions hit");
     if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("decisions", { user: user });
+      // var user = {
+      //   id: req.session.passport.user,
+      //   isloggedin: req.isAuthenticated()
+      // };
+      res.render("decisions", { user: req.user });
     } else {
       res.render("login");
     }
@@ -33,20 +33,11 @@ module.exports = function(app) {
     }
   });
 
-  // index page
-  app.get("/index", function(req, res) {
-    if (req.isAuthenticated()) {
-      res.render("decisions", { user: req.user });
-    } else {
-      res.redirect("/login");
-    }
-  });
-
   // login page
   app.get("/login", function(req, res) {
     console.log("/login");
     if (req.isAuthenticated()) {
-      res.redirect("/api/decisions");
+      res.redirect("/decisions");
     } else {
       res.render("login");
     }
@@ -56,6 +47,11 @@ module.exports = function(app) {
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+  app.post("/add-to-cart", function(req, res) {
+    console.log("add to cart");
+    console.log("req.user.uuid: ", req.user.uuid);
+  });
 
   app.get("/cart", function(req, res) {
     console.log("you've arrived at the cart");
@@ -84,6 +80,41 @@ module.exports = function(app) {
         example: dbGifts
       });
     });
+  });
+
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+  app.get("/", function(req, res) {
+    console.log("/");
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render("decisions", user);
+    } else {
+      res.render("login");
+    }
+  });
+
+  // ***********Grab list of users************
+  app.get("/users", function(req, res) {
+    db.user.findAll().then(function(users) {
+      res.render("decisions", { users: users }).then(function(dbgift) {
+        console.log("dbgift: ", dbgift);
+      });
+    });
+  });
+
+  // ***********Grab list of users************
+
+  app.get("/signup", function(req, res) {
+    console.log("/signup");
+    if (req.isAuthenticated()) {
+      res.redirect("/decisions");
+    } else {
+      res.render("signup");
+    }
   });
 
   // Render 404 page for any unmatched routes

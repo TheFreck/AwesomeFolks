@@ -1,11 +1,18 @@
 <div class="container">
   <div class="row">
     <div class="col-12 offset-2">
-      {{> partial-logout}}
+      {{>navigation/nav-logout}}
       <h2>What Do You Want To Do?</h2>
       <button class="btn btn-danger createRegistry">Create / View My List</button>
       <button class="btn btn-warning viewFriend">View a Friends List</button>
       <button class="btn btn-success shopping">See My Shopping List</button>
-    </div>
+
+      {{#each item}}
+
+        <button data-uuid={{uuid}} id="seeGifts">{{name}}</button>
+
+      {{/each}}
+        
+    </div>  
   </div>
-</div>
+</div> 

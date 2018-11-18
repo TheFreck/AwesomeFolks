@@ -23,7 +23,7 @@ module.exports = function(sequelize, DataTypes) {
     // A Post can't be created without an Author due to the foreign key constraint
     Gifts.belongsTo(models.user, {
       foreignKey: {
-        allowNull: false
+        allowNull: true
       }
     });
   };

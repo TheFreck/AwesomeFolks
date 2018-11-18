@@ -8,12 +8,11 @@
         {{#each gift}}
         <li data-id="{{this.id}}" class="list-group-item">
           <h4>{{this.item}}</h4>
-          <p>{{this.url}}</p>
           <p>{{this.category}}</p>
           <p>{{this.price}}</p>
           <p>{{this.comments}}</p>
           <button class="btn btn-success float-right delete">PURCHASE</button>
-          <button class="btn btn-warning float-right shopping">ADD TO SHOPPING LIST</button>
+          <button data-item={{item: this.item}} class="btn btn-warning float-right shopping">ADD TO SHOPPING LIST</button>
           <form action="http://www.google.com/search" method="get">
             <input type="text" class="itemInput" name="q" value="{{this.item}}"/>
             <input type="submit" value="Find Me Online" />

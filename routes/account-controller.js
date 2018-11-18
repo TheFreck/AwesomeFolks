@@ -16,7 +16,7 @@ module.exports = function(app) {
           userInfo: dbUser.dataValues,
           id: req.session.passport.user,
           isloggedin: req.isAuthenticated()
-        }
+        };
         res.render("index", user);
       });
     } else {
@@ -67,7 +67,7 @@ module.exports = function(app) {
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/index");
+        return res.redirect("/decisions");
       });
     })(req, res, next);
   });
@@ -89,14 +89,14 @@ module.exports = function(app) {
 
       req.login(user, function(err) {
         if (err) {
-          console.log("err", err)
+          console.log("err", err);
           return next(err);
         }
         console.log("redirecting....");
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/index");
+        return res.redirect("/decisions");
       });
     })(req, res, next);
   });
