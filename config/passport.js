@@ -1,41 +1,40 @@
-var LocalStrategy = require('passport-local').Strategy;
+var LocalStrategy = require("passport-local").Strategy;
 
-var db  = require('../models');
+var db = require("../models");
 
 module.exports = function(passport) {
+  // =========================================================================
+  // passport session setup
+  // =========================================================================
 
-    // =========================================================================
-    // passport session setup
-    // =========================================================================
+  // tags the user as logged in or logged out
 
-    // tags the user as logged in or logged out
+  passport.serializeUser(function(user, done) {
+    console.log("user.uuid", user.uuid);
+    done(null, user.uuid);
+  });
 
-    passport.serializeUser(function(user, done) {
-        console.log("user.uuid", user.uuid);
-        done(null, user.uuid);
+  passport.deserializeUser(function(uuid, done) {
+    db.user.findById(uuid).then(function(user) {
+      if (user) {
+        done(null, user.get());
+      } else {
+        done(user.errors, null);
+      }
     });
+  });
 
-    passport.deserializeUser(function(uuid, done) {
-        db.user.findById(uuid).then(function(user) {
-        if (user) {
-            done(null, user.get());
-        } else {
-            done(user.errors, null);
-        }
-        });
-    });
+  // =========================================================================
+  // LOCAL SIGNUP
+  // =========================================================================
 
-    // =========================================================================
-    // LOCAL SIGNUP
-    // =========================================================================
-
-    passport.use('local-signup', new LocalStrategy({
-        usernameField: 'email',
-        passwordField: 'account_key',
-        passReqToCallback: true
-    },
-    function(req, email, account_key, done) {
-        process.nextTick(function() {
+  passport.use("local-signup", new LocalStrategy({
+    usernameField: 'email',
+    passwordField: 'account_key',
+    passReqToCallback: true
+  },
+  function(req, email, account_key, done) {
+    process.nextTick(function() {
         // does the user already exist?
 
         db.user.findOne({
@@ -89,7 +88,7 @@ passport.use('local-login', new LocalStrategy({
                 email: req.body.email 
             }
         }).then(function(user, err) {
-            
+
             if(err) throw err;
 
             if (!user){

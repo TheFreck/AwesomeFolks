@@ -1,7 +1,7 @@
-$("#signUp").on("click", function (event) {
+$("#signUp").on("click", function(event) {
   event.preventDefault();
 
-  console.log("Entered add account button.")
+  console.log("Entered add account button.");
   var newAccount = {
     name: $("#nameUp").val().trim(),
     email: $("#emailUp").val().trim(),
@@ -9,21 +9,28 @@ $("#signUp").on("click", function (event) {
     account_key2: $("#passwordConfirm").val().trim()
   };
   console.log("newAccount: ", newAccount);
-  if (newAccount.account_key.length > 0 && newAccount.email.length > 0 && newAccount.account_key.length > 0 && newAccount.name.length > 0) {
-    if(newAccount.account_key === newAccount.account_key2){
-      $.post("/signup", newAccount, function(results) {
+  if (
+    newAccount.account_key.length > 0 &&
+    newAccount.email.length > 0 &&
+    newAccount.account_key2.length > 0 &&
+    newAccount.name.length > 0
+  ) {
+    if (newAccount.account_key === newAccount.account_key2) {
+      $.post("/signup", newAccount, function() {
         console.log("login");
         window.location.href = "/";
-      })
-      
+      });
     } else {
       console.log("**passwords don't match**");
-      $("#create-err-msg").empty("").text("**Passwords don't match**");
-      console.log("password: ", newAccount.passwordUp)
-    };
+      $("#create-err-msg")
+        .empty("")
+        .text("**Passwords don't match**");
+    }
   } else {
     console.log("**Please fill out entire form**");
-    $("#create-err-msg").empty("").text("**Please fill out entire form**");
+    $("#create-err-msg")
+      .empty("")
+      .text("**Please fill out entire form**");
   }
 });
 
@@ -32,23 +39,24 @@ $("#signIn").on("click", function(event) {
   var user = {
     email: $("#emailIn").val().trim(),
     account_key: $("#passwordIn").val().trim()
-  }
+  };
 
   $.post("/login", user, function(results) {
-    if(results) {
-      $(location).attr('href', '/index')
-    }else {
-      $("#account-info").modal("close");
-      alert("oops something went wrong, please try again!");
+    if (results) {
+      $(location).attr("href", "/decisions");
+    } else {
+      console.log("oops something went wrong, please try again!");
     }
   });
 });
 
-$("#logout").on("click", function(event) {
-  event.preventDefault();
-  $.get("/logout", function(results) {
-    console.log("results: ", results);
-    $(location).attr("href", "/");
+$("#decisions").on("click", function() {
+  $(location).attr("href", "/");
+});
+
+$("#logout").on("click", function() {
+  $.post("/logout", function() {
+    $(location).attr("href", "/login");
   });
 });
 
@@ -62,7 +70,6 @@ $(".create-form").on("submit", function(event) {
 
   var newWishList = {
     item: $("#item").val(),
-    url: $("#url").val(),
     category: $("#category").val(),
     price: $("#price").val(),
     comments: $("#comments").val()
@@ -82,7 +89,7 @@ $(".create-form").on("submit", function(event) {
 // *****************************************************************
 
 $(".delete").on("click", function() {
-  console.log("CLICKED");
+  console.log("delete CLICKED");
   var id = $(this)
     .parent()
     .attr("data-id");
@@ -115,32 +122,27 @@ $(".createRegistry").on("click", function() {
 });
 
 // *****************************************************************
-// EDIT ITEM ON WISH LIST
+// ADD TO SHOPPING CART
 // *****************************************************************
 
-
-$(".shopping").on("click", function () {
-  $.ajax("/api/gifts/", {
+$(document).on("click", ".shopping", function() {
+  console.log("/api/gifts", $(this).attr("data-item"));
+  $.ajax("/api/addCart", {
     type: "PUT",
-    data: gifts
-  }).then(function () {
-    // Reload the page to get the updated list
+    data: $(this).attr("data-item")
+  }).then(function() {
     location.reload();
   });
 });
 
 // ****************BUTTON FOR EACH USER************************
 $("#seeGifts").on("click", function() {
-  var uuid = $("#seeGifts").attr("data-uuid")
+  var uuid = $("#seeGifts").attr("data-uuid");
   $.get("/api/gifts/" + uuid).then(function() {
     // Reload the page to get the updated list
-    
+
     location.reload();
   });
 });
 
 // ****************BUTTON FOR EACH USER************************
-
-
-
-
