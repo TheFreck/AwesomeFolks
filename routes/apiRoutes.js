@@ -12,6 +12,22 @@ module.exports = function(app) {
     });
   });
 
+
+  app.get("/api/gifts/:id", function(req, res) {
+    // Find one Gift with the id in req.params.id and return them to the user with res.json
+    db.gift
+      .findOne({
+        where: {
+          userUuid: req.params.id
+        },
+        include: [db.user]
+      })
+      .then(function(dbgifts) {
+        res.json(dbgifts);
+        console.log("THIS IS THE USER UUID" + userUuid);
+      });
+  });
+
   app.get("/api/view", function(req, res) {
     db.gift.findAll({}).then(function(data) {
       var giftObject = {
@@ -22,56 +38,65 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/gifts/:id", function(req, res) {
+  app.get("/api/view/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
     db.gift
-      .findOne({
+      .findAll({
         where: {
           userUuid: req.params.id
-        }
+        },
+        include: [db.user]
       })
-      .then(function(dbgifts) {
-        res.json(dbgifts);
+      .then(function(data) {
+        var giftObject = {
+          gift: data
+        };
+        // res.json(dbgifts);
+        res.render("viewUserGift", giftObject)
+        console.log("where is my user ID " + req.params.id)
       });
   });
-
-  // app.get("/api/gifts/:id", function(req, res) {
-
-  //     // Find one Gift with the id in req.params.id and return them to the user with res.json
-  //     db.gift
-  //       .findOne({
-  //         where: {
-  //           uuid: req.params.uuid
-  //         },
-  //         include: [db.gift]
-  //       })
-  //       .then(function(dbgifts) {
-  // console.log(uuid)
-  //         res.json(dbgifts);
-  //         console.log(dbgifts);
-  //       });
-  //   });
 
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   // ADDED CODE TO PULL DROP DOWN CATEGORY
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+//CHANGED BACK TO POST INSTEAD OF PUT
+  // app.post("/api/gifts/", function(req, res) {
+  //   // console.log("adding an item: ", req.user.uuid);
+  //   console.log("req.body.comment: ", req.body.comment);
+  //   db.gift
+  //     .create({
+  //       item: req.body.item,
+  //       category: req.body.category,
+  //       price: req.body.price,
+  //       comment: req.body.comment,
+  //       // userUuid: req.user.uuid
+  //       userUuid: req.session.passport.user
+  //     })
+  //     .then(function(dbgifts) {
+  //       console.log("\n\n#####: ", dbgifts);
+  //       res.json(dbgifts);
+  //     });
+  // });
 
-  app.put("/api/gifts/", function(req, res) {
-    console.log("adding an item: ", req.user.uuid);
-    console.log("req.body.comment: ", req.body.comment);
+  app.post("/api/gifts/", function(req, res) {
+    console.log("???" + req.session);
     db.gift
       .create({
         item: req.body.item,
         category: req.body.category,
         price: req.body.price,
         comment: req.body.comment,
-        userUuid: req.user.uuid
+        purchased: req.body.purchased,
+        // userUuid: req.user.uuid
+        userUuid: req.session.passport.user
       })
       .then(function(dbgifts) {
-        console.log("\n\n#####: ", dbgifts);
         res.json(dbgifts);
+        console.log(req.body.category);
       });
   });
+
 
   app.delete("/api/gifts/:id", function(req, res) {
     // Delete the Author with the id available to us in req.params.id
@@ -86,34 +111,19 @@ module.exports = function(app) {
       });
   });
 
-  app.put("/api/addCart", function(req, res) {
-    console.log("boom");
-    console.log("apiRoutes adding item to shopping cart", req);
-    db.gift
-      .findOne({
-        where: { item: this.item }
-      })
-      .on("success", function(gifts) {
-        if (gifts) {
-          gifts.update({
-            shopping: "smile"
-          });
-        }
-      });
-  });
+  // app.put("/api/addCart", function(req, res) {
+  //   console.log("boom");
+  //   console.log("apiRoutes adding item to shopping cart", req);
+  //   db.gift
+  //     .findOne({
+  //       where: { item: this.item }
+  //     })
+  //     .on("success", function(gifts) {
+  //       if (gifts) {
+  //         gifts.update({
+  //           shopping: "smile"
+  //         });
+  //       }
+  //     });
+  // });
 };
-
-// app.put("/api/gifts", function(req, res) {
-//   db.gift
-//     .update(
-//       req.body,
-//       {
-//         where: {
-//           id: req.body.id
-//         }
-//     })
-//     .then(function(dbgifts) {
-//     res.json(dbgifts);
-//   });
-// });
-// }};

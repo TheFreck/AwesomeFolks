@@ -1,3 +1,4 @@
+$(document).ready(function(){
 $("#signUp").on("click", function(event) {
   event.preventDefault();
 
@@ -136,13 +137,20 @@ $(document).on("click", ".shopping", function() {
 });
 
 // ****************BUTTON FOR EACH USER************************
-$("#seeGifts").on("click", function() {
-  var uuid = $("#seeGifts").attr("data-uuid");
-  $.get("/api/gifts/" + uuid).then(function() {
-    // Reload the page to get the updated list
 
-    location.reload();
+$(document).on("click", ".seeGifts", function() {
+      
+  console.log("CLICKED")
+  event.preventDefault();
+  var uuid = $(this).attr("data-uuid");
+  $.get("/api/view/" + uuid).then(function() {
+    
+    location.href = "/api/view/" + uuid;
+
+    // location.reload();
   });
+});
+
 });
 
 // ****************BUTTON FOR EACH USER************************
