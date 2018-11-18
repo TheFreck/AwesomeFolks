@@ -11,19 +11,22 @@ $("#signUp").on("click", function (event) {
   console.log("newAccount: ", newAccount);
   if (newAccount.account_key.length > 0 && newAccount.email.length > 0 && newAccount.account_key.length > 0 && newAccount.name.length > 0) {
     if(newAccount.account_key === newAccount.account_key2){
-      $.post("/signup", newAccount, function(results) {
+      $.post("/signup", newAccount, function() {
         console.log("login");
         window.location.href = "/";
-      })
-      
+      });
     } else {
       console.log("**passwords don't match**");
-      $("#create-err-msg").empty("").text("**Passwords don't match**");
-      console.log("password: ", newAccount.passwordUp)
-    };
+      $("#create-err-msg")
+        .empty("")
+        .text("**Passwords don't match**");
+      console.log("password: ", newAccount.passwordUp);
+    }
   } else {
     console.log("**Please fill out entire form**");
-    $("#create-err-msg").empty("").text("**Please fill out entire form**");
+    $("#create-err-msg")
+      .empty("")
+      .text("**Please fill out entire form**");
   }
 });
 
@@ -35,18 +38,18 @@ $("#signIn").on("click", function(event) {
   }
 
   $.post("/login", user, function(results) {
-    if(results) {
-      $(location).attr('href', '/index')
-    }else {
-      $("#account-info").modal("close");
-      alert("oops something went wrong, please try again!");
+    if (results) {
+      $(location).attr("href", "/index");
+    } else {
+      console.log("oops something went wrong, please try again!");
     }
   });
 });
 
 $("#logout").on("click", function(event) {
-  event.preventDefault();
-  $.get("/logout", function(results) {
+  $.post("/logout", function(results) {
+    event.preventDefault();
+    console.log("++++++++++++++++++++++++++logout++++++++++++++++++++++++");
     console.log("results: ", results);
     $(location).attr("href", "/");
   });
@@ -62,7 +65,6 @@ $(".create-form").on("submit", function(event) {
 
   var newWishList = {
     item: $("#item").val(),
-    url: $("#url").val(),
     category: $("#category").val(),
     price: $("#price").val(),
     comments: $("#comments").val()
@@ -82,7 +84,7 @@ $(".create-form").on("submit", function(event) {
 // *****************************************************************
 
 $(".delete").on("click", function() {
-  console.log("CLICKED");
+  console.log("delete CLICKED");
   var id = $(this)
     .parent()
     .attr("data-id");
@@ -118,15 +120,12 @@ $(".createRegistry").on("click", function() {
 // EDIT ITEM ON WISH LIST
 // *****************************************************************
 
-
-$(".shopping").on("click", function () {
+$(".shopping").on("click", function() {
   $.ajax("/api/gifts/", {
     type: "PUT",
     data: gifts
-  }).then(function () {
+  }).then(function() {
     // Reload the page to get the updated list
     location.reload();
   });
 });
-
-

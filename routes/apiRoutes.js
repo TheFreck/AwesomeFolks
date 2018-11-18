@@ -44,18 +44,18 @@ module.exports = function(app) {
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 
   app.post("/api/gifts/", function(req, res) {
+    console.log("adding an item: ", req.user.uuid);
     db.gift
       .create({
         item: req.body.item,
-        url: req.body.url,
         category: req.body.category,
         price: req.body.price,
         comment: req.body.comment,
-        purchased: req.body.purchased
+        shopping: req.user.uuid
       })
       .then(function(dbgifts) {
+        console.log("\n\n#####: ", dbgifts);
         res.json(dbgifts);
-        console.log(req.body.category);
       });
   });
 
