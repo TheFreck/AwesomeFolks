@@ -91,7 +91,7 @@ module.exports = function(app) {
           gift: data
         };
         // res.json(dbgifts);
-        res.render("gifts", giftObject);
+        res.render("shoppingList", giftObject);
         console.log("where is my user ID " + req.params.id);
       });
   });

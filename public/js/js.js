@@ -137,7 +137,7 @@ $(document).ready(function() {
   });
 
   $(".viewShopping").on("click", function() {
-    "clicked"
+    console.log("clicked");
     $.get("/api/cart/").then(function() {
       location.href = "/api/cart/";
     });
