@@ -78,4 +78,23 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
+  app.get("/api/cart/", function(req, res) {
+    db.gift
+      .findAll({
+        where: {
+          shopping: req.session.passport.user
+        },
+        include: [db.user]
+      })
+      .then(function(data) {
+        var giftObject = {
+          gift: data
+        };
+        // res.json(dbgifts);
+        res.render("gifts", giftObject);
+        console.log("where is my user ID " + req.params.id);
+      });
+  });
 };
+
+// ******?
