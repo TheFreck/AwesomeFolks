@@ -1,9 +1,14 @@
 {
+	"parserOptions": {
+		"ecmaVersion": 2017
+},
     "env": {
         "browser": true,
         "commonjs": true,
-        "node": true
-    },
+				"node": true,
+				"es6": true
+		},
+		
     "extends": "prettier",
     "plugins": [
         "prettier"
@@ -35,6 +40,8 @@
             "error",
             "always"
         ],
-        "prettier/prettier": "error"
-    }
-}
+				"prettier/prettier": "error"
+			}
+	}
+
+
