@@ -44,6 +44,7 @@ $(document).ready(function() {
 
   $("#signIn").on("click", function(event) {
     event.preventDefault();
+    console.log("signin hit$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\/$$$$$$$$$$$$$$$$$4\/%%%%%%%%%%%%%%%%55\/%%%%%%%%%%%%%%%%%%");
     var user = {
       email: $("#emailIn")
         .val()
@@ -54,7 +55,7 @@ $(document).ready(function() {
     };
     $.post("/login", user, function(results) {
       if (results) {
-        $(location).attr("href", "/");
+        $(location).attr("href", "/viewuser");
         console.log("logged in on the front end");
       } else {
         console.log("oops something went wrong, please try again!");
