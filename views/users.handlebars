@@ -1,20 +1,18 @@
 <div class="container">
-  <div class="row">
-    <div class="col-12 offset-2">
-      {{>navigation/nav-logout}}
-      <h2>What Do You Want To Do?</h2>
-      <button class="btn btn-danger createRegistry">Create / View My List</button>
-      <button class="btn btn-warning viewFriend">View a Friends List</button>
-      <button class="btn btn-success shopping">See My Shopping List</button>
-<br>
-      {{#each user}}
+	<div class="row">
+		<div class="col-12 offset-2">
+			<h1>{{msg}}</h1>
+			<h2>What Do You Want To Do?</h2>
+			<button class="btn btn-danger createRegistry">Create / View My List</button>
+			<button class="btn btn-warning viewFriend">View a Friends List</button>
+			<button class="btn btn-success shopping">See My Shopping List</button>
+			{{#each users}}
 
-        <button data-uuid={{uuid}} class="seeGifts">{{name}}</button>
+			<button data-uuid={{uuid}} id="seeGifts">{{name}}</button>
 
-      {{/each}}
 
-    
-        
-    </div>  
-  </div>
-</div> 
+			{{/each}}
+
+		</div>
+	</div>
+</div>

@@ -2,23 +2,67 @@
 <html>
 
 <head>
-  <meta charset="utf-8">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/styles/css.css" media="screen" title="no title" charset="utf-8">
-  <title>What Do You Want From Me?!?</title>
+	<meta charset="utf-8">
+	{{!-- Bootstrap link --}}
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css">
+	{{!-- Font Family Link --}}
+	<link href="https://fonts.googleapis.com/css?family=Monda" rel="stylesheet">
+	{{!-- Page Icon Link --}}
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+	 crossorigin="anonymous">
+	{{!-- Materialize and animation links --}}
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
+	{{!-- Sass file link --}}
+	<link rel="stylesheet" type="text/css" href="/styles/css/main.css">
+	<title>The Greedy Bastard List</title>
 </head>
 
 <body>
-  <h1>What Do You Want From Me?!?</h1>
-  {{{body}}}
+	<header>
+		<button class="js-menu menu" type="button">
+			<span class="bar"></span>
+		</button>
+		<nav class="menu">
+			<ul class="menu-inner">
+				<a href="/api/view" class="menu-link">
+					<li>My Wishlist</li>
+				</a>
+				<a href="/api/gifts" class="menu-link">
+					<li>Add to Wishlist</li>
+				</a>
+				<a href="/api/gifts/:id" class="menu-link">
+					<li>My Friends Wishlists</li>
+				</a>
+		</nav>
+
+	</Header>
+	<!--	background img - imported from scss-->
+
+	<body id="bg-img">
+		<main id="home">
+
+			<!--Logo animation-->
+			<div class="container">
+				<div class="row">
+					<div class="col s12 center-align top:60px" style="top: 60px;">
+						<img src="/Images/GreedyBastards2.png" class="animated flipInX center-align gbLogo" alt="Greedy Bastard Logo"
+						 width="500px" style="margin-top: -;">
+					</div>
+				</div>
+			</div>
+
+			{{{body}}}
+
+			</div>
+		</main>
+		{{!-- JS for menu button functionality --}}
+		<script src="/public/js/navbar.js"></script>
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<script src="/js/js.js"></script>
 
 
-  
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-<script src="/js/js.js"></script>
-
-</body>
+	</body>
 
 </html>
-
