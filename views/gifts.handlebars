@@ -3,13 +3,13 @@
 		<div class="row">
 			<div class="col-8 offset-2">
 				<h1>{{msg}}</h1>
+				{{>navigation/nav-logout}}
 				<h2>Greedy Bastard List</h2>
 				<form class="clearfix mb-4 create-form">
 					<div class="form-group">
 						<label for="item">Item Description</label>
 						<input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
-						<label for="url">URL (if known)</label>
-						<textarea class="form-control" id="url" aria-describedby="url" placeholder="Enter URL of item if known"></textarea>
+
 					</div>
 
 					<div class="form-group">

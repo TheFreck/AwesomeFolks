@@ -13,7 +13,7 @@ app.use(cors());
 
 var db = require("./models");
 
-require('./config/passport')(passport);
+require("./config/passport")(passport);
 
 var PORT = process.env.PORT || 3000;
 
@@ -32,15 +32,17 @@ app.engine(
 
 app.set("view engine", "handlebars");
 
-app.use(session({
-  key: 'user_sid',
-  secret: 'goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-    expires: 600000
-  }
-}));
+app.use(
+  session({
+    key: "user_sid",
+    secret: "goN6DJJC6E287cC77kkdYuNuAyWnz7Q3iZj8",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      expires: 600000
+    }
+  })
+);
 
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions

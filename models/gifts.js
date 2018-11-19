@@ -4,13 +4,6 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: false
     },
-    url: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        isUrl: true
-      }
-    },
     category: {
       type: DataTypes.STRING
     },
@@ -21,8 +14,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING
     },
     shopping: {
-      type: DataTypes.BOOLEAN,
-      defaultValue: false
+      type: DataTypes.STRING
     }
   });
 

@@ -1,32 +1,72 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  app.get("/login", function(req, res) {
-    res.render("login");
+  // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
+  // GATE KEEPER
+  // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
+
+  // the root will go to the table of contents...
+  // if the user is already logged in
+  // otherwise it goes to the login page
+  // which has access to the signup page
+
+  app.get("/decisions", function(req, res) {
+    console.log("decisions hit");
+    if (req.isAuthenticated()) {
+      // var user = {
+      //   id: req.session.passport.user,
+      //   isloggedin: req.isAuthenticated()
+      // };
+      res.render("decisions", { user: req.user });
+    } else {
+      res.render("login");
+    }
   });
 
+  // signup page
   app.get("/signup", function(req, res) {
-    res.render("signup");
+    console.log("/signup");
+    if (req.isAuthenticated()) {
+      res.redirect("/decisions");
+    } else {
+      res.render("signup");
+    }
   });
 
-  app.get("/gifts", function(req, res) {
-    res.render("gifts");
+  // login page
+  app.get("/login", function(req, res) {
+    console.log("/login");
+    if (req.isAuthenticated()) {
+      res.redirect("/decisions");
+    } else {
+      res.render("login");
+    }
   });
+  // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
 
-  app.get("/viewGifts", function(req, res) {
-    res.render("viewGifts");
-  });
+  // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+  // SHOPPING LIST
+  // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.get("/contents", function(req, res) {
-    res.render("index");
+  app.post("/add-to-cart", function(req, res) {
+    console.log("add to cart");
+    console.log("req.user.uuid: ", req.user.uuid);
   });
 
   // Render 404 page for any unmatched routes
   app.get("*", function(req, res) {
     res.render("404");
+  app.get("/cart", function(req, res) {
+    console.log("you've arrived at the cart");
+    res.render("shoppingList", { message: "htmlRoutes.js" });
   });
 
-  // Load index page
+  // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+
+  app.get("/gifts", function(req, res) {
+    res.render("gifts");
+  });
+
   app.get("/api/gifts/", function(req, res) {
     db.gift.findAll({}).then(function(data) {
       var giftObject = {
@@ -37,28 +77,16 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/gifts/", function(req, res) {
-    db.gift.findAll({}).then(function(data) {
-      var giftObject = {
-        gift: data
-      };
-      res.render("gifts", giftObject);
-      res.json(data);
-    });
-  });
-  // Load example page and pass in an example by id
-  app.get("/api/gifts/:id", function(req, res) {
-    db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
-      res.render("gifts", {
-        example: dbGifts
-      });
-    });
-  });
-};
+  // app.get("/api/gifts/:id", function(req, res) {
+  //   db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
+  //     res.render("gifts", {
+  //       example: dbGifts
+  //     });
+  //   });
+  // });
 
-// ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-module.exports = function(app) {
   app.get("/", function(req, res) {
     console.log("/");
     if (req.isAuthenticated()) {
@@ -66,7 +94,7 @@ module.exports = function(app) {
         id: req.session.passport.user,
         isloggedin: req.isAuthenticated()
       };
-      res.render("index", user);
+      res.render("decisions", user);
     } else {
       res.render("login");
     }
@@ -74,14 +102,8 @@ module.exports = function(app) {
 
   // ***********Grab list of users************
   app.get("/users", function(req, res) {
-    db.user.findAll().then(function(users) {
-      res
-        .render("decisions", {
-          users: users
-        })
-        .then(function(dbgift) {
-          // users:
-        });
+    db.user.findAll().then(function(user) {
+      res.render("decisions", { user: user })
     });
   });
 
@@ -90,26 +112,14 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
     console.log("/signup");
     if (req.isAuthenticated()) {
-      res.redirect("/index");
+      res.redirect("/decisions");
     } else {
       res.render("signup");
     }
   });
 
-  app.get("/index", function(req, res) {
-    if (req.isAuthenticated()) {
-      res.render("index");
-    } else {
-      res.redirect("/login");
-    }
-  });
-
-  app.get("/login", function(req, res) {
-    console.log("/login");
-    if (req.isAuthenticated()) {
-      res.redirect("/index");
-    } else {
-      res.render("login");
-    }
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
   });
 };
