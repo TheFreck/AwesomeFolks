@@ -67,14 +67,14 @@ module.exports = function(app) {
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/users");
+        return res.redirect("/viewusers");
       });
     })(req, res, next);
   });
 
   app.post("/login", function(req, res, next) {
     console.log("req.body", req.body);
-    passport.authenticate("local-login", function(err, user, info) {
+    passport.authenticate("local-login", function(err, user) {
       console.log("user.uuid: " + user.uuid);
       if (err) {
         console.log("passport err", err);
@@ -96,7 +96,7 @@ module.exports = function(app) {
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/users");
+        return res.redirect("/viewusers");
       });
     })(req, res, next);
   });
