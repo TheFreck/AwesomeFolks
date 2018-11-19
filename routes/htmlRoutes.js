@@ -13,11 +13,7 @@ module.exports = function(app) {
   app.get("/", function(req, res) {
     console.log("/");
     if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("users", user);
+      res.redirect("/viewuser");
     } else {
       res.render("login");
     }
@@ -26,11 +22,7 @@ module.exports = function(app) {
   app.get("/users", function(req, res) {
     console.log("authenticated: ", req.session);
     if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("users", user);
+      res.redirect("/viewuser");
     } else {
       res.render("login");
     }
@@ -40,9 +32,19 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
     console.log("/signup");
     if (req.isAuthenticated()) {
-      res.redirect("/users");
+      res.redirect("/viewuser");
     } else {
       res.render("signup");
+    }
+  });
+
+  app.get("/viewuser", function(req, res) {
+    if (req.isAuthenticated()) {
+      db.user.findAll().then(function(user) {
+        res.render("users", { user: user });
+      });
+    } else {
+      res.render("login");
     }
   });
 
