@@ -136,6 +136,14 @@ $(document).ready(function() {
     });
   });
 
+  $(".viewShopping").on("click", function() {
+    "clicked"
+    $.get("/api/cart/").then(function() {
+      location.href = "/api/cart/";
+    });
+  });
+
+
   // *****************************************************************
   // ADD TO SHOPPING CART
   // *****************************************************************
@@ -166,3 +174,5 @@ $(document).ready(function() {
     });
   });
 });
+
+
