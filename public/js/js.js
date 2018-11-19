@@ -1,7 +1,6 @@
 $(document).ready(function() {
   $("#signUp").on("click", function(event) {
     event.preventDefault();
-
     console.log("Entered add account button.");
     var newAccount = {
       name: $("#nameUp")
@@ -53,23 +52,24 @@ $(document).ready(function() {
         .val()
         .trim()
     };
-
     $.post("/login", user, function(results) {
       if (results) {
-        $(location).attr("href", "/decisions");
+        $(location).attr("href", "/");
+        console.log("logged in on the front end");
       } else {
         console.log("oops something went wrong, please try again!");
       }
     });
+    console.log("user: ", user);
   });
 
-  $("#decisions").on("click", function() {
+  $("#users").on("click", function() {
     $(location).attr("href", "/");
   });
 
   $("#logout").on("click", function() {
     $.post("/logout", function() {
-      $(location).attr("href", "/login");
+      $(location).attr("href", "/");
     });
   });
 
@@ -137,14 +137,17 @@ $(document).ready(function() {
   // *****************************************************************
   // ADD TO SHOPPING CART
   // *****************************************************************
-
-  $(document).on("click", ".shopping", function() {
-    console.log("/api/gifts", $(this).attr("data-item"));
-    $.ajax("/api/addCart", {
+  $("#wishList").on("click", ".shopping", function() {
+    console.log($(this).attr("data-id"));
+    var dataObject = {
+      data: $(this).attr("data-item"),
+      id: $(this).attr("data-id")
+    };
+    $.ajax("/add-to-cart", {
       type: "PUT",
-      data: $(this).attr("data-item")
-    }).then(function() {
-      location.reload();
+      data: dataObject
+    }).then(function(added) {
+      console.log("added", added);
     });
   });
 

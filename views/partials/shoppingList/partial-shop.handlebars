@@ -1,8 +1,9 @@
 <li>
-	{{users}}
+	{{name}}
 
+	<button class="change-sleep" data-id="{{id}}" data-uuid="{{sleep}}">
+		{{#if sleep}}SLEEP TIME!{{else}}WAKE UP!{{/if}}
+	</button>
 
-    <h1>Some text in the partial</h1>
-		
-
+	<button class="delete-cat" data-id="{{this.id}}">DELETE!</button>
 </li>
