@@ -15,35 +15,19 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css">
 	{{!-- Sass file link --}}
 	<link rel="stylesheet" type="text/css" href="/styles/css/main.css">
+
 	<title>The Greedy Bastard List</title>
 </head>
 
 <body>
-	<header>
-		<button class="js-menu menu" type="button">
-			<span class="bar"></span>
-		</button>
-		<nav class="menu">
-			<ul class="menu-inner">
-				<a href="/api/view" class="menu-link">
-					<li>My Wishlist</li>
-				</a>
-				<a href="/api/gifts" class="menu-link">
-					<li>Add to Wishlist</li>
-				</a>
-				<a href="/api/gifts/:id" class="menu-link">
-					<li>My Friends Wishlists</li>
-				</a>
-		</nav>
-
-	</Header>
-	<!--	background img - imported from scss-->
+			
+		<!--	background img - imported from scss-->
 
 	<body id="bg-img">
 		<main id="home">
-
 			<!--Logo animation-->
 			<div class="container">
+			{{>navigation/nav-menu}}
 				<div class="row">
 					<div class="col s12 center-align top:60px" style="top: 60px;">
 						<img src="/Images/GreedyBastards2.png" class="animated flipInX center-align gbLogo" alt="Greedy Bastard Logo"
@@ -57,11 +41,9 @@
 			</div>
 		</main>
 		{{!-- JS for menu button functionality --}}
-		<script src="/public/js/navbar.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
 		<script src="/js/js.js"></script>
-
+		<script src="/js/navbar.js"></script>
 
 	</body>
 
