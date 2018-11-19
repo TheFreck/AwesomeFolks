@@ -12,7 +12,6 @@ module.exports = function(app) {
     });
   });
 
-
   app.get("/api/gifts/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
     db.gift
@@ -52,15 +51,15 @@ module.exports = function(app) {
           gift: data
         };
         // res.json(dbgifts);
-        res.render("viewUserGift", giftObject)
-        console.log("where is my user ID " + req.params.id)
+        res.render("viewUserGift", giftObject);
+        console.log("where is my user ID " + req.params.id);
       });
   });
 
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
   // ADDED CODE TO PULL DROP DOWN CATEGORY
   //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-//CHANGED BACK TO POST INSTEAD OF PUT
+  //CHANGED BACK TO POST INSTEAD OF PUT
   // app.post("/api/gifts/", function(req, res) {
   //   // console.log("adding an item: ", req.user.uuid);
   //   console.log("req.body.comment: ", req.body.comment);
@@ -96,7 +95,6 @@ module.exports = function(app) {
         console.log(req.body.category);
       });
   });
-
 
   app.delete("/api/gifts/:id", function(req, res) {
     // Delete the Author with the id available to us in req.params.id

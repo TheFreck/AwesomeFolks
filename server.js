@@ -39,13 +39,13 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: 600000
+      expires: false
     }
   })
 );
 
 app.use(passport.initialize());
-app.use(passport.session()); // persistent login sessions
+app.use(passport.session());
 app.use(flash());
 
 // Routes

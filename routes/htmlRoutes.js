@@ -10,14 +10,27 @@ module.exports = function(app) {
   // otherwise it goes to the login page
   // which has access to the signup page
 
-  app.get("/decisions", function(req, res) {
-    console.log("decisions hit");
+  app.get("/", function(req, res) {
+    console.log("/");
     if (req.isAuthenticated()) {
-      // var user = {
-      //   id: req.session.passport.user,
-      //   isloggedin: req.isAuthenticated()
-      // };
-      res.render("decisions", { user: req.user });
+      var user = {
+        id: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render("users", user);
+    } else {
+      res.render("login");
+    }
+  });
+
+  app.get("/users", function(req, res) {
+    console.log("authenticated: ", req.session);
+    if (req.isAuthenticated()) {
+      var user = {
+        id: req.session.passport.user,
+        isloggedin: req.isAuthenticated()
+      };
+      res.render("users", user);
     } else {
       res.render("login");
     }
@@ -27,35 +40,70 @@ module.exports = function(app) {
   app.get("/signup", function(req, res) {
     console.log("/signup");
     if (req.isAuthenticated()) {
-      res.redirect("/decisions");
+      res.redirect("/users");
     } else {
       res.render("signup");
     }
   });
 
-  // login page
-  app.get("/login", function(req, res) {
-    console.log("/login");
-    if (req.isAuthenticated()) {
-      res.redirect("/decisions");
-    } else {
-      res.render("login");
-    }
-  });
+  // // login page
+  // app.post("/login", function(req, res) {
+  //   console.log("/login");
+  //   res.redirect("/users");
+  //   // if (req.isAuthenticated()) {
+  //   // } else {
+  //   //   res.render("login");
+  //   // }
+  // });
   // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
 
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.post("/add-to-cart", function(req, res) {
+  app.put("/add-to-cart", function(req, res) {
     console.log("add to cart");
-    console.log("req.user.uuid: ", req.user.uuid);
+    console.log("req.user.uuid", req.session.passport.user);
+    console.log("req.body.id: ", req.body.id);
+    db.gift
+      .update(
+        {
+          shopping: req.session.passport.user
+        },
+        {
+          where: {
+            id: req.body.id
+          }
+        }
+      )
+      .then(function(data) {
+        console.log("data", data);
+      });
   });
 
   app.get("/cart", function(req, res) {
     console.log("you've arrived at the cart");
-    res.render("shoppingList", { message: "htmlRoutes.js" });
+    db.gift
+      .findAll({
+        where: {
+          shopping: req.session.passport.user
+        }
+      })
+      .then(function(data) {
+        console.log("data: ", data[0].dataValues);
+        var giftArray = [];
+        var giftObject = {
+          giftArray: giftArray
+        };
+        for (i = 0; i < data.length; i++) {
+          giftArray.push({
+            item: data[0].dataValues.item,
+            id: data[0].dataValues.id,
+            price: data[0].dataValues.price
+          });
+        }
+        res.render("shoppingList", giftObject);
+      });
   });
 
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -84,32 +132,13 @@ module.exports = function(app) {
 
   // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-  app.get("/", function(req, res) {
-    console.log("/");
-    if (req.isAuthenticated()) {
-      var user = {
-        id: req.session.passport.user,
-        isloggedin: req.isAuthenticated()
-      };
-      res.render("decisions", user);
-    } else {
-      res.render("login");
-    }
-  });
-
-  // ***********Grab list of users************
-  app.get("/users", function(req, res) {
-    db.user.findAll().then(function(user) {
-      res.render("decisions", { user: user })
-    });
-  });
 
   // ***********Grab list of users************
 
   app.get("/signup", function(req, res) {
     console.log("/signup");
     if (req.isAuthenticated()) {
-      res.redirect("/decisions");
+      res.redirect("/users");
     } else {
       res.render("signup");
     }
