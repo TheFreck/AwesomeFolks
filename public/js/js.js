@@ -3,10 +3,18 @@ $(document).ready(function() {
     event.preventDefault();
     console.log("Entered add account button.");
     var newAccount = {
-      name: $("#nameUp").val().trim(),
-      email: $("#emailUp").val().trim(),
-      account_key: $("#passwordUp").val().trim(),
-      account_key2: $("#passwordConfirm").val().trim()
+      name: $("#nameUp")
+        .val()
+        .trim(),
+      email: $("#emailUp")
+        .val()
+        .trim(),
+      account_key: $("#passwordUp")
+        .val()
+        .trim(),
+      account_key2: $("#passwordConfirm")
+        .val()
+        .trim()
     };
     console.log("newAccount: ", newAccount);
     if (
@@ -37,8 +45,12 @@ $(document).ready(function() {
   $("#signIn").on("click", function(event) {
     event.preventDefault();
     var user = {
-      email: $("#emailIn").val().trim(),
-      account_key: $("#passwordIn").val().trim()
+      email: $("#emailIn")
+        .val()
+        .trim(),
+      account_key: $("#passwordIn")
+        .val()
+        .trim()
     };
     $.post("/login", user, function(results) {
       if (results) {
@@ -125,7 +137,6 @@ $(document).ready(function() {
   // *****************************************************************
   // ADD TO SHOPPING CART
   // *****************************************************************
-
   $("#wishList").on("click", ".shopping", function() {
     console.log($(this).attr("data-id"));
     var dataObject = {

@@ -83,6 +83,9 @@ module.exports = function(app) {
       });
   });
 
+  // Render 404 page for any unmatched routes
+  app.get("*", function(req, res) {
+    res.render("404");
   app.get("/cart", function(req, res) {
     console.log("you've arrived at the cart");
     db.gift
