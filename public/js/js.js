@@ -131,8 +131,9 @@ $(document).ready(function() {
   // *****************************************************************
 
   $(".createRegistry").on("click", function() {
-    console.log("CLICKED VIEW FRIEND");
-    location.href = "/api/gifts";
+    $.get("/api/gifts/").then(function() {
+      location.href = "/api/gifts/";
+    });
   });
 
   // *****************************************************************

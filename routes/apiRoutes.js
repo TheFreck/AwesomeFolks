@@ -1,29 +1,21 @@
 var db = require("../models/");
 
 module.exports = function(app) {
-  // Find all Gifts and return them to the user with res.json
-  app.get("/api/gifts", function(req, res) {
-    db.gift.findAll({}).then(function(data) {
-      var giftObject = {
-        gift: data
-      };
-      res.render("gifts", giftObject);
-      // res.json(data);
-    });
-  });
-
-  app.get("/api/gifts/:id", function(req, res) {
-    // Find one Gift with the id in req.params.id and return them to the user with res.json
+  app.get("/api/gifts/", function(req, res) {
     db.gift
-      .findOne({
+      .findAll({
         where: {
-          userUuid: req.params.id
+          userUuid: req.session.passport.user
         },
         include: [db.user]
       })
-      .then(function(dbgifts) {
-        res.json(dbgifts);
-        console.log("THIS IS THE USER UUID" + userUuid);
+      .then(function(data) {
+        var giftObject = {
+          gift: data
+        };
+        // res.json(dbgifts);
+        res.render("gifts", giftObject);
+        console.log("where is my user ID " + req.params.id);
       });
   });
 
@@ -56,28 +48,6 @@ module.exports = function(app) {
       });
   });
 
-  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  // ADDED CODE TO PULL DROP DOWN CATEGORY
-  //xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-  //CHANGED BACK TO POST INSTEAD OF PUT
-  // app.post("/api/gifts/", function(req, res) {
-  //   // console.log("adding an item: ", req.user.uuid);
-  //   console.log("req.body.comment: ", req.body.comment);
-  //   db.gift
-  //     .create({
-  //       item: req.body.item,
-  //       category: req.body.category,
-  //       price: req.body.price,
-  //       comment: req.body.comment,
-  //       // userUuid: req.user.uuid
-  //       userUuid: req.session.passport.user
-  //     })
-  //     .then(function(dbgifts) {
-  //       console.log("\n\n#####: ", dbgifts);
-  //       res.json(dbgifts);
-  //     });
-  // });
-
   app.post("/api/gifts/", function(req, res) {
     console.log("???" + req.session);
     db.gift
@@ -108,20 +78,4 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
-
-  // app.put("/api/addCart", function(req, res) {
-  //   console.log("boom");
-  //   console.log("apiRoutes adding item to shopping cart", req);
-  //   db.gift
-  //     .findOne({
-  //       where: { item: this.item }
-  //     })
-  //     .on("success", function(gifts) {
-  //       if (gifts) {
-  //         gifts.update({
-  //           shopping: "smile"
-  //         });
-  //       }
-  //     });
-  // });
 };

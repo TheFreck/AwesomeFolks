@@ -116,29 +116,23 @@ module.exports = function(app) {
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   app.get("/gifts", function(req, res) {
-    res.render("gifts");
+    // Find one Gift with the id in req.params.id and return them to the user with res.json
+    db.gift
+      .findAll({
+        where: {
+          userUuid: req.session.passport.user
+        },
+        include: [db.user]
+      })
+      .then(function(data) {
+        var giftObject = {
+          gift: data
+        };
+        // res.json(dbgifts);
+        res.render("viewUserGift", giftObject);
+        console.log("where is my user ID " + req.params.id);
+      });
   });
-
-  app.get("/api/gifts/", function(req, res) {
-    db.gift.findAll({}).then(function(data) {
-      var giftObject = {
-        gift: data
-      };
-      res.render("gifts", giftObject);
-      res.json(data);
-    });
-  });
-
-  // app.get("/api/gifts/:id", function(req, res) {
-  //   db.gift.findOne({ where: { id: req.params.id } }).then(function(dbGifts) {
-  //     res.render("gifts", {
-  //       example: dbGifts
-  //     });
-  //   });
-  // });
-
-  // ++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 
   // ***********Grab list of users************
 
