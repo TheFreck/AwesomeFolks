@@ -164,5 +164,3 @@ $(document).ready(function() {
     });
   });
 });
-
-// ****************BUTTON FOR EACH USER************************
