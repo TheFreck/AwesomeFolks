@@ -74,7 +74,7 @@ module.exports = function(app) {
 
   app.post("/login", function(req, res, next) {
     console.log("req.body", req.body);
-    passport.authenticate("local-login", function(err, user, info) {
+    passport.authenticate("local-login", function(err, user) {
       console.log("user.uuid: " + user.uuid);
       if (err) {
         console.log("passport err", err);
