@@ -1,4 +1,6 @@
 <div id="home">
+	{{>navigation/nav-logout}}
+	{{>navigation/nav-users}}
   <div class="container">
     <div class="tableContainer">
       <div class="row">
@@ -9,30 +11,31 @@
 		      <h3 class="center-align" id="greedy">I'M A GREEDY BASTARD - HERE IS MY LIST</h3>
 		    <br>
 		  <tr>
-		    <th>ITEM</th>
+		  <th>ITEM</th>
 			<th>PRICE</th>
 			<th>COMMENTS</th>
-			<th>BUY IT</th>
+			<th>ADD TO SHOPPING LIST</th>
 			<th>FIND ONLINE</th>
 
 		  </tr>
 		  </thead>
-            {{#each gift}}
-			  <tbody>
-			    <tr>
-			      <td class="itemName">
-				    <h5>{{this.item}}</h5>
-			      </td>
-			      <td>{{this.price}}</td>
-				  <td>{{this.comments}}</td>
-				 	<td><button data-item={{this.userUuid}} data-id="{{this.id}}" class="btn btn-warning float-right shopping">ADD TO
-						SHOPPING LIST</button></td>
-					<td><form action="http://www.google.com/search" method="get">
-						<input type="text" class="itemInput" name="q" value="{{this.item}}" />
-						<input type="submit" id="online" target="_blank" value="Find Me Online" />
-					</form></td>
-				</tr>
-			{{/each}}
+				{{#each gift}}
+				{{#unless this.shopping}}
+					<tbody id="">
+						<tr>
+							<td class="itemName">
+							<h5>{{this.item}}</h5>
+							</td>
+							<td>{{this.price}}</td>
+							<td>{{this.comments}}</td>
+							<td><button data-item={{this.userUuid}} data-id="{{this.id}}" class="material-icons btn-floating btn-large waves-effect waves-light amber darken-4 shopping">add</button></td>
+							<td><form action="http://www.google.com/search" method="get">
+							<input type="text" class="itemInput" name="q" value="{{this.item}}" />
+							<input type="submit" id="online" target="_blank" value="Find Me Online" />
+							</form></td>
+					</tr>
+				{{/unless}}
+				{{/each}}
               </tbody>
 	      </table>
 	    </div>

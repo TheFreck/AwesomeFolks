@@ -1,7 +1,10 @@
 $(document).ready(function() {
+  // *****************************************************************
+  // GATE KEEPER
+  // *****************************************************************
+
   $("#signUp").on("click", function(event) {
     event.preventDefault();
-    console.log("Entered add account button.");
     var newAccount = {
       name: $("#nameUp")
         .val()
@@ -16,7 +19,6 @@ $(document).ready(function() {
         .val()
         .trim()
     };
-    console.log("newAccount: ", newAccount);
     if (
       newAccount.account_key.length > 0 &&
       newAccount.email.length > 0 &&
@@ -25,7 +27,6 @@ $(document).ready(function() {
     ) {
       if (newAccount.account_key === newAccount.account_key2) {
         $.post("/signup", newAccount, function() {
-          console.log("login");
           window.location.href = "/";
         });
       } else {
@@ -44,9 +45,6 @@ $(document).ready(function() {
 
   $("#signIn").on("click", function(event) {
     event.preventDefault();
-    console.log(
-      "signin hit$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n$$$$$$$$$$$$$$$$$4\n%%%%%%%%%%%%%%%%55\n%%%%%%%%%%%%%%%%%%"
-    );
     var user = {
       email: $("#emailIn")
         .val()
@@ -63,11 +61,8 @@ $(document).ready(function() {
         console.log("oops something went wrong, please try again!");
       }
     });
-    console.log("user: ", user);
-    
   });
 
-  
   $("#users").on("click", function() {
     $(location).attr("href", "/");
   });
@@ -141,7 +136,6 @@ $(document).ready(function() {
   });
 
   $(".viewShopping").on("click", function() {
-    console.log("clicked");
     $.get("/api/cart/").then(function() {
       location.href = "/api/cart/";
     });
@@ -151,23 +145,44 @@ $(document).ready(function() {
   // ADD TO SHOPPING CART
   // *****************************************************************
   $("#wishList").on("click", ".shopping", function() {
-    console.log($(this).attr("data-id"));
+    console.log("shoping list hit");
     var dataObject = {
       data: $(this).attr("data-item"),
-      id: $(this).attr("data-id")
+      id: $(this).attr("data-id"),
+      callback: (function() {
+        location.reload();
+      })()
     };
     $.ajax("/add-to-cart", {
       type: "PUT",
       data: dataObject
+    }).then(function() {
+      console.log("this never fires for some reason");
+    });
+  });
+
+  $("#shoppingList").on("click", ".nevermind", function() {
+    console.log("nevermind hit");
+    var dataObject = {
+      data: $(this).attr("data-item"),
+      id: $(this).attr("data-id")
+    };
+    console.log("dataObject", dataObject);
+    $.ajax("/drop-from-cart", {
+      type: "PUT",
+      data: dataObject,
+      callback: (function() {
+        location.reload();
+      })()
     }).then(function(added) {
-      console.log("added", added);
+      location.reload();
+      console.log("nevermind front end: ", added);
     });
   });
 
   // ****************BUTTON FOR EACH USER************************
 
   $(document).on("click", ".seeGifts", function() {
-    console.log("CLICKED");
     event.preventDefault();
     var uuid = $(this).attr("data-uuid");
     $.get("/api/view/" + uuid).then(function() {

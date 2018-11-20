@@ -39,7 +39,7 @@ app.use(
     resave: false,
     saveUninitialized: false,
     cookie: {
-      expires: false
+      expires: 99999999999
     }
   })
 );
