@@ -21,8 +21,8 @@ module.exports = function(app) {
   app.get("/api/userwish", function(req, res) {
     db.user.findAll().then(function(user) {
       res.render("userButton", { user: user });
-      console.log(user)
-  });
+      console.log(user);
+    });
   });
 
   app.get("/api/view/:id", function(req, res) {
@@ -35,13 +35,9 @@ module.exports = function(app) {
         include: [db.user]
       })
       .then(function(data) {
-        for (i = 0; i < data.length; i++) {
-          console.log("\n\n#*##################******************\n\n^^^^^^^^^^^^^^^^^^&&&&&&&&&&&&\n", data[i].dataValues.shopping);
-        }
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
       });
   });
