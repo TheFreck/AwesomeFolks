@@ -1,39 +1,49 @@
-		<header>
-			<div class ="menu-btn">
-				<div class="btn-line"></div>
-				<div class="btn-line"></div>
-				<div class="btn-line"></div>
-			</div>
-			<!-- Main menu -->
-			<nav class="menu">
-				<div class="menu-branding">
-					<div class="portrait"></div>
-				</div>
-				<!-- nav buttons -->
-				<ul class="menu-nav">
-					<li class="nav-item current">
-						<a href="/" class="nav-link">
-							Home
-						</a>
-					</li>
-					<!-- Navigation link to about me -->
-					<li class="nav-item">
-						<a href="/api/view" class="nav-link">
-							Add To Wishlist
-						</a>
-					</li>
-						<!-- Navigation link to portfolio -->
-					<li class="nav-item">
-						<a href="/api/view:id" class="nav-link">
-							My Wishlist
-						</a>
-					</li>
-						<!-- Navigation link to contact me -->
-					<li class="nav-item">
-						<a href="/cart" class="nav-link">
-							My Cart
-						</a>
-					</li>
-				</ul>
-			</nav>
-		</header>
+<div class="navbar-fta">
+  <div class="navbar-menu">
+    <i class="material-icons" id="menu-open">menu</i>
+    <div class="navbar-notification">1</div>
+  </div>
+  <div class="navbar-logo">
+    <i class="icon-logo"></i>
+  </div>
+  <div class="cheek"></div>
+</div>
+
+<div class="flyout closed">
+  <div class="flyout-header">
+    <i class="material-icons flyout-close" id="menu-close">keyboard_backspace</i>
+    <h3 class="flyout-title">Welcome</h3>
+    <div class="cheek"></div>
+  </div>
+  <ul class="flyout-menu">
+    <li>
+      <a href="/viewuser">
+        <i class="material-icons">home</i>
+        Home
+      </a>
+    </li>
+    <li>
+      <a href="/api/gifts">
+        <i class="material-icons">view_list</i>
+        My Wishlist
+      </a>
+    </li>
+		<li>
+      <a href="/cart">
+        <i class="material-icons">shopping_cart</i>
+        Shopping Cart
+      </a>
+    </li>
+    <li>
+      <a href="/viewuser">
+        <i class="material-icons" id="users">group</i>
+				View a Friends List
+          </a>
+		<li>
+      <a href="/">
+        <i class="material-icons" id="Logout">settings_backup_restore</i>
+       Sign Out
+      </a>
+    </li>
+  </ul>
+</div>
