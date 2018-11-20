@@ -10,7 +10,6 @@ module.exports = function(passport) {
   // tags the user as logged in or logged out
 
   passport.serializeUser(function(user, done) {
-    console.log("user.uuid", user.uuid);
     done(null, user.uuid);
   });
 

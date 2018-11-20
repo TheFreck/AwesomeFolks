@@ -15,7 +15,6 @@ module.exports = function (app) {
         };
         // res.json(dbgifts);
         res.render("gifts", giftObject);
-        console.log("API/GIFTS " + req.params.id);
       });
   });
 
@@ -53,14 +52,11 @@ module.exports = function (app) {
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("API VIEW ID " + req.params.id);
       });
   });
 
-  app.post("/api/gifts/", function (req, res) {
-    console.log("???" + req.session);
+  app.post("/api/gifts/", function(req, res) {
     db.gift
       .create({
         item: req.body.item,
@@ -73,7 +69,6 @@ module.exports = function (app) {
       })
       .then(function (dbgifts) {
         res.json(dbgifts);
-        console.log(req.body.category);
       });
   });
 
@@ -89,7 +84,8 @@ module.exports = function (app) {
         res.json(dbgifts);
       });
   });
-  app.get("/api/cart/", function (req, res) {
+
+  app.get("/api/cart/", function(req, res) {
     db.gift
       .findAll({
         where: {
@@ -103,7 +99,6 @@ module.exports = function (app) {
         };
         // res.json(dbgifts);
         res.render("shoppingList", giftObject);
-        console.log("API/CART " + req.params.id);
       });
   });
 };

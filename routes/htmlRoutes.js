@@ -11,7 +11,6 @@ module.exports = function(app) {
   // which has access to the signup page
 
   app.get("/", function(req, res) {
-    console.log("/");
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -20,7 +19,6 @@ module.exports = function(app) {
   });
 
   app.get("/users", function(req, res) {
-    console.log("authenticated: ", req.session);
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -30,7 +28,6 @@ module.exports = function(app) {
 
   // signup page
   app.get("/signup", function(req, res) {
-    console.log("/signup");
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -48,15 +45,11 @@ module.exports = function(app) {
     }
   });
 
-
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.put("/add-to-cart", function(req) {
-    console.log("add to cart");
-    console.log("req.user.uuid", req.session.passport.user);
-    console.log("req.body.id: ", req.body.id);
+  app.put("/add-to-cart", function(req, res) {
     db.gift
       .update(
         {
@@ -69,7 +62,7 @@ module.exports = function(app) {
         }
       )
       .then(function(data) {
-        console.log("data", data);
+        console.log("data: ", data);
       });
   });
 
@@ -79,7 +72,7 @@ module.exports = function(app) {
   });
 
   app.get("/cart", function(req, res) {
-    console.log("you've arrived at the cart");
+    console.log("\n\n\nyou've arrived at the cart\n\n\n");
     db.gift
       .findAll({
         where: {
@@ -87,7 +80,6 @@ module.exports = function(app) {
         }
       })
       .then(function(data) {
-        console.log("data: ", data[0].dataValues);
         var giftArray = [];
         var giftObject = {
           giftArray: giftArray
@@ -96,10 +88,28 @@ module.exports = function(app) {
           giftArray.push({
             item: data[0].dataValues.item,
             id: data[0].dataValues.id,
-            price: data[0].dataValues.price
+            price: data[0].dataValues.price,
+            shopping: data[0].dataValues.shopping
           });
         }
         res.render("shoppingList", giftObject);
+      });
+  });
+
+  app.put("/drop-from-cart", function(req, res) {
+    db.gift
+      .update(
+        {
+          shopping: ""
+        },
+        {
+          where: {
+            id: req.body.id
+          }
+        }
+      )
+      .then(function(data) {
+        console.log("data: ", data);
       });
   });
 
@@ -120,7 +130,6 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("/GIFTS " + req.params.id);
       });
   });
 
@@ -135,7 +144,6 @@ module.exports = function(app) {
   // ***********Grab list of users************
 
   app.get("/signup", function(req, res) {
-    console.log("/signup");
     if (req.isAuthenticated()) {
       res.redirect("/users");
     } else {
