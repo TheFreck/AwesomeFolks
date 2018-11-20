@@ -1,7 +1,13 @@
 <div class="container">
 	<div class="row">
 		<div class="col-12 offset-2">
+			{{>navigation/nav-logout}}
+			{{>navigation/nav-menu}}
+		</div>
+	</div>
 
+	<div class="row">
+		<div class="col-12 offset-2">
 			<h2>What Do You Want To Do?</h2>
 			<button class="btn btn-danger createRegistry">Create / View My List</button>
 			<button class="btn btn-warning viewFriend">View a Friends List</button>
@@ -12,4 +18,5 @@
 			{{/each}}
 		</div>
 	</div>
+
 </div>
