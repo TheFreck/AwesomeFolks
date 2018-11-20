@@ -130,7 +130,7 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("where is my user ID " + req.params.id);
+        console.log("/GIFTS " + req.params.id);
       });
   });
 
