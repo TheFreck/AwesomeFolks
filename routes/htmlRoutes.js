@@ -48,22 +48,11 @@ module.exports = function(app) {
     }
   });
 
-  // // login page
-  // app.post("/login", function(req, res) {
-  //   console.log("/login");
-  //   res.redirect("/users");
-  //   // if (req.isAuthenticated()) {
-  //   // } else {
-  //   //   res.render("login");
-  //   // }
-  // });
-  // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
-
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.put("/add-to-cart", function(req) {
+  app.put("/add-to-cart", function(req, res) {
     console.log("add to cart");
     console.log("req.user.uuid", req.session.passport.user);
     console.log("req.body.id: ", req.body.id);
@@ -79,7 +68,7 @@ module.exports = function(app) {
         }
       )
       .then(function(data) {
-        console.log("data", data);
+        console.log("data: ", data);
       });
   });
 

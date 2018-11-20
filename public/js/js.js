@@ -158,6 +158,7 @@ $(document).ready(function() {
       type: "PUT",
       data: dataObject
     }).then(function(added) {
+      location.reload();
       console.log("added", added);
     });
   });

@@ -39,6 +39,9 @@ module.exports = function(app) {
         include: [db.user]
       })
       .then(function(data) {
+        for (i = 0; i < data.length; i++) {
+          console.log("\n\n#*##################******************\n\n^^^^^^^^^^^^^^^^^^&&&&&&&&&&&&\n", data[i].dataValues.shopping);
+        }
         var giftObject = {
           gift: data
         };
