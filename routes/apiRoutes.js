@@ -15,7 +15,6 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("gifts", giftObject);
-        console.log("where is my user ID " + req.params.id);
       });
   });
 
@@ -47,25 +46,22 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("where is my user ID " + req.params.id);
       });
   });
 
   app.post("/api/gifts/", function(req, res) {
-    console.log("???" + req.session);
     db.gift
       .create({
         item: req.body.item,
         category: req.body.category,
         price: req.body.price,
-        comment: req.body.comment,
+        comments: req.body.comments,
         purchased: req.body.purchased,
         // userUuid: req.user.uuid
         userUuid: req.session.passport.user
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
-        console.log(req.body.category);
       });
   });
 
@@ -95,7 +91,6 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("shoppingList", giftObject);
-        console.log("where is my user ID " + req.params.id);
       });
   });
 };

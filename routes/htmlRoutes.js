@@ -11,7 +11,6 @@ module.exports = function(app) {
   // which has access to the signup page
 
   app.get("/", function(req, res) {
-    console.log("/");
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -20,7 +19,6 @@ module.exports = function(app) {
   });
 
   app.get("/users", function(req, res) {
-    console.log("authenticated: ", req.session);
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -30,7 +28,6 @@ module.exports = function(app) {
 
   // signup page
   app.get("/signup", function(req, res) {
-    console.log("/signup");
     if (req.isAuthenticated()) {
       res.redirect("/viewuser");
     } else {
@@ -53,9 +50,6 @@ module.exports = function(app) {
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
   app.put("/add-to-cart", function(req, res) {
-    console.log("add to cart");
-    console.log("req.user.uuid", req.session.passport.user);
-    console.log("req.body.id: ", req.body.id);
     db.gift
       .update(
         {
@@ -86,7 +80,6 @@ module.exports = function(app) {
         }
       })
       .then(function(data) {
-        console.log("data: ", data[0].dataValues);
         var giftArray = [];
         var giftObject = {
           giftArray: giftArray
@@ -99,6 +92,23 @@ module.exports = function(app) {
           });
         }
         res.render("shoppingList", giftObject);
+      });
+  });
+
+  app.put("/drop-from-cart", function(req, res) {
+    db.gift
+      .update(
+        {
+          shopping: 0
+        },
+        {
+          where: {
+            id: req.body.id
+          }
+        }
+      )
+      .then(function(data) {
+        console.log("data: ", data);
       });
   });
 
@@ -119,14 +129,12 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("where is my user ID " + req.params.id);
       });
   });
 
   // ***********Grab list of users************
 
   app.get("/signup", function(req, res) {
-    console.log("/signup");
     if (req.isAuthenticated()) {
       res.redirect("/users");
     } else {

@@ -1,10 +1,45 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8 offset-2">
-        <h2>The Greedy Bastard List</h2>
-        {{>navigation/nav-users}}
-        {{>navigation/nav-logout}}
-        <h3>BUY ME THIS....NOW!</h3>
+<div id="home">
+  {{>navigation/nav-logout}}
+  {{>navigation/nav-users}}
+  <div class="container">
+    <div class="tableContainer">
+      <div class="row">
+	    <div class="col-12">
+	      <table id="shoppingList" class="centered responsive-table z-depth-5">
+		    <thead>
+		    <br>
+		      <h3 class="center-align" id="greedy">I'M A GREEDY BASTARD - HERE IS MY LIST</h3>
+		    <br>
+		      <tr>
+			    <th>ITEM</th>
+			    <th>PRICE</th>
+			    <th>COMMENTS</th>
+			    <th>BUY IT</th>
+			    <th>FIND ONLINE</th>
+              </tr>
+		   </thead>
+             {{#each gift}}
+			  <tbody>
+			    <tr>
+			      <td class="itemName"><h5>{{this.item}}</h5>
+			      </td>
+			      <td>{{this.price}}</td>
+				  <td>{{this.comments}}</td>
+				  <td data-id="{{this.id}}"><button class="large material-icons btn-floating btn-large waves-effect waves-light green delete">attach_money
+					</button></td>
+				  <td>
+				  <form action="http://www.google.com/search" method="get">
+					<input type="text" class="itemInput" name="q" value="{{this.item}}" />
+					<input type="submit" id="online" target="_blank" value="Find Me Online" />
+				  </form>
+					<button class="nevermind">nevermind</button>
+				</td>
+			   </tr>
+			 {{/each}}
+			  </tbody>
+			</table>
+	    </div>
+      </div>
     </div>
   </div>
   <div class="row">

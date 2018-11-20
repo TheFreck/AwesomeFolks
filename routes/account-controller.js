@@ -45,8 +45,6 @@ module.exports = function(app) {
 
   app.post("/signup", function(req, res, next) {
     passport.authenticate("local-signup", function(err, user, info) {
-      console.log("info", info);
-      console.log("signup req.body: ", req.body);
       if (err) {
         console.log("passport err", err);
         return next(err); // will generate a 500 error
@@ -73,9 +71,7 @@ module.exports = function(app) {
   });
 
   app.post("/login", function(req, res, next) {
-    console.log("req.body", req.body);
     passport.authenticate("local-login", function(err, user) {
-      console.log("user.uuid: " + user.uuid);
       if (err) {
         console.log("passport err", err);
         return next(err); // will generate a 500 error
