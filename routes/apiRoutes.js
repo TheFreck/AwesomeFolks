@@ -19,15 +19,13 @@ module.exports = function(app) {
       });
   });
 
-  app.get("/api/view", function(req, res) {
-    db.gift.findAll({}).then(function(data) {
-      var giftObject = {
-        gift: data
-      };
-      res.render("userButton", giftObject);
-      // res.json(data);
-    });
+  app.get("/api/userwish", function(req, res) {
+    db.user.findAll().then(function(user) {
+      res.render("userButton", { user: user });
   });
+  });
+
+  
 
   app.get("/api/view/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
