@@ -17,35 +17,36 @@
 
 	{{!-- Sass file link --}}
 	<link rel="stylesheet" type="text/css" href="/styles/css/main.css">
-
+	<link rel="shortcut icon" href="/Images/lips.png" />
 	<title>The Greedy Bastard List</title>
 </head>
 
-			
-		<!--	background img - imported from scss-->
 
-	<body id="bg-img">
-		<main id="home">
-			<!--Logo animation-->
-			<div class="container">
+<!--	background img - imported from scss-->
+
+<body id="bg-img">
+
+	{{!-- <main id="home"> --}}
+		<!--Logo animation-->
+		<div class="container">
 			{{>navigation/nav-menu}}
-				<div class="row">
-					<div class="col s12 center-align top:60px" style="top: 60px;">
-						<img src="/Images/GreedyBastards2.png" class="animated flipInX center-align gbLogo" alt="Greedy Bastard Logo"
-						 width="500px" style="margin-top: -;">
-					</div>
+			<div class="row">
+				<div class="col s12 center-align top:60px" style="top: 60px;">
+					<img src="/Images/GreedyBastards2.png" class="animated flipInX center-align gbLogo" alt="Greedy Bastard Logo"
+					 width="500px" style="margin-top: -;">
 				</div>
 			</div>
+		</div>
 
-			{{{body}}}
+		{{{body}}}
 
-			</div>
-		</main>
-		{{!-- JS for menu button functionality --}}
-		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-		<script src="/js/js.js"></script>
-		<script src="/js/navbar.js"></script>
+		</div>
+	</main>
+	{{!-- JS for menu button functionality --}}
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="/js/js.js"></script>
+	<script src="/js/navbar.js"></script>
 
-	</body>
+</body>
 
 </html>

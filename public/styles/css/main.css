@@ -1,6 +1,6 @@
 .menu-btn {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   right: 35px;
   top: 35px;
   cursor: pointer;
@@ -40,14 +40,14 @@
   .menu-nav {
     margin: 0;
     padding: 0;
-    background: #fbd700;
+    background: #075570;
     list-style: none;
     transform: translate3d(0, -100%, 0);
     transition: all 0.5 ease-out; }
     .menu-nav.show {
       transform: translate3d(0, 0, 0); }
     .menu-nav.current > a {
-      color: #dd1c1a; }
+      color: #086788; }
   .menu .nav-link {
     display: inline-block;
     position: relative;
@@ -59,7 +59,7 @@
     text-decoration: none;
     transition: all 0.5 ease-out; }
     .menu .nav-link:hover {
-      color: #dd1c1a; }
+      color: #ffde15; }
 
 .nav-item:nth-child(1) {
   transition-delay: 0.1s; }
@@ -74,86 +74,73 @@
   transition-delay: 0.4s; }
 
 * {
-  box-sizing: border-box; }
-
-html {
-  background: #e2e2e2; }
-
-body {
-  background: #e2e2e2;
+  box-sizing: border-box;
   margin: 0;
-  padding: 0;
-  font-family: "Lato", sans-serif; }
+  padding: 0; }
 
 .modality-form-wrap {
-  background: radial-gradient(ellipse at center, #da4543 0%, #dd1c1a 100%);
-  border: 1px solid #ca322f;
-  box-shadow: 0 1px #565c68 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin: 0 auto;
+  background: #ecf0f1;
+  width: 350px;
   border-radius: 5px;
-  width: 360px;
-  height: 380px;
-  margin: 60px auto;
-  padding: 50px 30px 0 30px;
-  text-align: center; }
-  .modality-form-wrap h1,
-  .modality-form-wrap h2,
-  .modality-form-wrap h3,
-  .modality-form-wrap h4,
-  .modality-form-wrap h5 {
-    margin: 0 0 50px 0;
-    padding: 0;
-    font-size: 26px;
-    color: #fff; }
-  .modality-form-wrap h5 {
-    margin-top: 40px; }
-  .modality-form-wrap h5 > a {
-    font-size: 14px;
-    text-decoration: none;
-    font-weight: 400; }
-
-.modality input[type="email"],
-.modality input[type="password"] {
-  width: 100%;
-  border: 1px solid #314d89;
-  outline: none;
-  padding: 12px 20px;
-  color: #afafaf;
-  font-weight: 400;
-  font-family: "Lato", sans-serif;
-  cursor: pointer; }
-
-.modality input[type="email"] {
-  border-bottom: none;
-  border-radius: 4px 4px 0 0;
-  padding-bottom: 13px;
-  box-shadow: 0 -1px 0 #e0e0e0 inset, 0 1px 2px rgba(0, 0, 0, 0.23) inset; }
-
-.modality input[type="password"] {
-  border-top: none;
-  border-radius: 0 0 4px 4px;
-  box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.23) inset, 0 1px 2px rgba(255, 255, 255, 0.1); }
-
-.modality input[type="submit"] {
-  font-family: "Lato", sans-serif;
-  font-weight: 400;
-  background: linear-gradient(to bottom, #e0e0e0 0%, #cecece 100%);
-  display: block;
-  margin: 20px auto 0 auto;
-  width: 100%;
-  border: none;
-  border-radius: 3px;
-  padding: 8px;
-  font-size: 17px;
-  color: #636363;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-  font-weight: 700;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17), 0 1px 0 rgba(255, 255, 255, 0.36) inset; }
-  .modality input[type="submit"]:hover {
-    background: #ddd; }
-  .modality input[type="submit"]:active {
-    padding-top: 9px;
-    padding-bottom: 7px;
-    background: #c9c9c9; }
+  box-shadow: 3px 3px 10px #333;
+  padding: 15px;
+  margin-bottom: 30px; }
+  .modality-form-wrap h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 10px;
+    color: #34495e; }
+  .modality-form-wrap .form {
+    padding-top: 20px; }
+    .modality-form-wrap .form input[type="text"],
+    .modality-form-wrap .form input[type="password"],
+    .modality-form-wrap .form button {
+      width: 80%;
+      margin-left: 10%;
+      margin-bottom: 25px;
+      height: 40px;
+      border-radius: 5px;
+      outline: 0;
+      -moz-outline-style: none; }
+    .modality-form-wrap .form input[type="text"],
+    .modality-form-wrap .form input[type="password"] {
+      border: 1px solid #bbb;
+      padding: 0 0 0 10px;
+      font-size: 14px; }
+      .modality-form-wrap .form input[type="text"]:focus,
+      .modality-form-wrap .form input[type="password"]:focus {
+        border: 1px solid #57bfda; }
+    .modality-form-wrap .form a {
+      text-align: center;
+      font-size: 10px;
+      color: #57bfda; }
+      .modality-form-wrap .form a p {
+        padding-bottom: 10px; }
+    .modality-form-wrap .form button {
+      background: #f44336;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 200;
+      cursor: pointer;
+      transition: box-shadow 0.4s ease; }
+      .modality-form-wrap .form button:hover {
+        box-shadow: 1px 1px 5px #555; }
+      .modality-form-wrap .form button:active {
+        box-shadow: 1px 1px 7px #222; }
+  .modality-form-wrap:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-linear-gradient(left, #27ae60 0%, #27ae60 20%, #8e44ad 20%, #8e44ad 40%, #57bfda 40%, #57bfda 60%, #f44336 60%, #f44336 80%, #fed81f 80%, #fed81f 100%);
+    background: -moz-linear-gradient(left, #27ae60 0%, #27ae60 20%, #8e44ad 20%, #8e44ad 40%, #57bfda 40%, #57bfda 60%, #f44336 60%, #f44336 80%, #fed81f 80%, #fed81f 100%);
+    height: 5px;
+    border-radius: 5px 5px 0 0; }
 
 * {
   box-sizing: border-box; }
@@ -186,7 +173,7 @@ main {
   main .icons {
     margin-top: 1rem; }
     main .icons:hover {
-      color: #dd1c1a;
+      color: #086788;
       transition: all 0.5 ease-out; }
   main#home {
     overflow: hidden; }
@@ -260,3 +247,29 @@ font-size: 60px;
   border-radius:2px;
 }
 
+@media screen and (max-width: 768px) {
+  main {
+    align-items: center;
+    text-align: center;
+    font-size-adjust: inherit; }
+    main .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem; }
+  ul.menu-nav, div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0; }
+    ul.menu-nav.show, div.menu-branding.show {
+      transform: translate3d(0, 0, 0); }
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px; } }
+
+.about-info {
+  grid-template-areas: 'bioimage' 'bio' 'job1' 'job2' 'job3';
+  grid-template-columns: 1fr; }
+
+@media screen and (max-width: 500px) {
+  main#home h1 {
+    margin-top: 10vh; } }
