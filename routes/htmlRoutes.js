@@ -48,20 +48,7 @@ module.exports = function(app) {
     }
   });
 
-  
-
-  // // login page
-  // app.post("/login", function(req, res) {
-  //   console.log("/login");
-  //   res.redirect("/users");
-  //   // if (req.isAuthenticated()) {
-  //   // } else {
-  //   //   res.render("login");
-  //   // }
-  // });
-  // +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
-
-  // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
+    // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 

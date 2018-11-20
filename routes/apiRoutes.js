@@ -95,6 +95,19 @@ module.exports = function(app) {
         console.log("API/CART " + req.params.id);
       });
   });
+
+  
+app.get("/api/userwish", function(req, res) {
+  db.gift.findAll({}).then(function(data) {
+    var giftObject = {
+      gift: data
+    };
+    res.render("userButton", giftObject);
+    // res.json(data);
+  });
+});
 };
+
+
 
 // ******?
