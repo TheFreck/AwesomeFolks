@@ -13,16 +13,22 @@ module.exports = function(app) {
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("gifts", giftObject);
       });
   });
 
   app.get("/api/userwish", function(req, res) {
-    db.user.findAll().then(function(user) {
-      res.render("userButton", { user: user });
-      console.log(user);
-    });
+    db.user
+      .findAll({
+        where: {
+          uuid: {
+            $ne: req.session.passport.user
+          }
+        }
+      })
+      .then(user => {
+        res.render("userButton", { user: user });
+      });
   });
 
   app.get("/api/view/:id", function(req, res) {
