@@ -58,7 +58,8 @@ module.exports = function(passport) {
                 return done(
                   null,
                   false,
-                  req.flash("signupMessage", "That email is already taken."));
+                  req.flash("signupMessage", "That email is already taken.")
+                );
               } else {
                 // if not make a new user
                 db.user
@@ -103,7 +104,9 @@ module.exports = function(passport) {
             }
           })
           .then(function(user, err) {
-            if (err) throw err;
+            if (err) {
+              throw err;
+            }
 
             if (!user) {
               console.log("no user found");

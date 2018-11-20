@@ -1,27 +1,42 @@
-<div class="container">
-	<div class="row">
-		<div class="col-8 offset-2">
-			<h2>The Greedy Bastard List</h2>
-			{{!-- {{>navigation/nav-users}}
-			{{>navigation/nav-logout}} --}}
-			<h3>BUY ME THIS....NOW!</h3>
-			<ul id="wishList" class="list-group">
-				{{#each gift}}
-				<li data-id="{{this.id}}" class="list-group-item">
-					<h4>{{this.item}}</h4>
-					<p>{{this.category}}</p>
-					<p>{{this.price}}</p>
-					<p>{{this.comments}}</p>
-					<button class="btn btn-success float-right delete">PURCHASE</button>
-					<button data-item={{this.userUuid}} data-id="{{this.id}}" class="btn btn-warning float-right shopping">ADD TO
-						SHOPPING LIST</button>
-					<form action="http://www.google.com/search" method="get">
+<div id="home">
+	{{>navigation/nav-logout}}
+  <div class="container">
+    <div class="tableContainer">
+      <div class="row">
+        <div class="col-12">
+		  <table class="centered responsive-table z-depth-5" id="wishList">
+		    <thead>
+		    <br>
+		      <h3 class="center-align" id="greedy">I'M A GREEDY BASTARD - HERE IS MY LIST</h3>
+		    <br>
+		  <tr>
+		    <th>ITEM</th>
+			<th>PRICE</th>
+			<th>COMMENTS</th>
+			<th>ADD TO SHOPPING LIST</th>
+			<th>FIND ONLINE</th>
+
+		  </tr>
+		  </thead>
+            {{#each gift}}
+			  <tbody class="center-align">
+			    <tr class="center-align">
+			      <td class="itemName">
+				    <h5>{{this.item}}</h5>
+			      </td>
+			      <td>{{this.price}}</td>
+				  <td>{{this.comments}}</td>
+				 	<td><button data-item={{this.userUuid}} data-id="{{this.id}}" class="material-icons btn-floating btn-large waves-effect waves-light red shopping">add</button></td>
+					<td><form action="http://www.google.com/search" method="get">
 						<input type="text" class="itemInput" name="q" value="{{this.item}}" />
-						<input type="submit" target="_blank" value="Find Me Online" />
-					</form>
-				</li>
-				{{/each}}
-			</ul>
-		</div>
+						<input type="submit" id="online" target="_blank" value="Find Me Online" />
+					</form></td>
+				</tr>
+			{{/each}}
+              </tbody>
+	      </table>
+	    </div>
+	  </div>
 	</div>
+  </div>
 </div>

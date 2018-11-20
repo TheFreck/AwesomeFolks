@@ -64,8 +64,10 @@ $(document).ready(function() {
       }
     });
     console.log("user: ", user);
+    
   });
 
+  
   $("#users").on("click", function() {
     $(location).attr("href", "/");
   });
@@ -123,9 +125,15 @@ $(document).ready(function() {
   // VIEW FRIENDS LIST
   // *****************************************************************
 
+<<<<<<< HEAD
   $("#viewFriend").on("click", function() {
     console.log("CLICKED VIEW FRIEND");
     location.href = "/api/view";
+=======
+  $(".viewFriend").on("click", function() {
+    console.log("You clicked on thsi button");
+    location.href = "/api/userwish";
+>>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
   });
 
   // *****************************************************************
@@ -144,7 +152,6 @@ $(document).ready(function() {
       location.href = "/api/cart/";
     });
   });
-
 
   // *****************************************************************
   // ADD TO SHOPPING CART
@@ -176,5 +183,3 @@ $(document).ready(function() {
     });
   });
 });
-
-

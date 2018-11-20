@@ -48,11 +48,15 @@ module.exports = function(app) {
     }
   });
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.put("/add-to-cart", function(req, res) {
+  app.put("/add-to-cart", function(req) {
     console.log("add to cart");
     console.log("req.user.uuid", req.session.passport.user);
     console.log("req.body.id: ", req.body.id);
@@ -119,8 +123,16 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("where is my user ID " + req.params.id);
+        console.log("/GIFTS " + req.params.id);
       });
+  });
+
+  app.get("/userwish", function(req, res) {
+    db.user.findAll().then(function(user) {
+      res.render("users", { user: user });
+      console.log("this is the user", user);
+    });
+    res.render("userButton");
   });
 
   // ***********Grab list of users************

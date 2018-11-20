@@ -15,18 +15,15 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("gifts", giftObject);
-        console.log("where is my user ID " + req.params.id);
+        console.log("API/GIFTS " + req.params.id);
       });
   });
 
-  app.get("/api/view", function(req, res) {
-    db.gift.findAll({}).then(function(data) {
-      var giftObject = {
-        gift: data
-      };
-      res.render("viewGifts", giftObject);
-      // res.json(data);
-    });
+  app.get("/api/userwish", function(req, res) {
+    db.user.findAll().then(function(user) {
+      res.render("userButton", { user: user });
+      console.log(user)
+  });
   });
 
   app.get("/api/view/:id", function(req, res) {
@@ -44,7 +41,7 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("where is my user ID " + req.params.id);
+        console.log("API VIEW ID " + req.params.id);
       });
   });
 
@@ -55,7 +52,7 @@ module.exports = function(app) {
         item: req.body.item,
         category: req.body.category,
         price: req.body.price,
-        comment: req.body.comment,
+        comments: req.body.comments,
         purchased: req.body.purchased,
         // userUuid: req.user.uuid
         userUuid: req.session.passport.user
@@ -93,6 +90,10 @@ module.exports = function(app) {
           gift: data
         };
         res.render("shoppingList", giftObject);
+<<<<<<< HEAD
+=======
+        console.log("API/CART " + req.params.id);
+>>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
       });
   });
 };

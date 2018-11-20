@@ -67,7 +67,7 @@ module.exports = function(app) {
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/viewusers");
+        return res.redirect("/viewuser");
       });
     })(req, res, next);
   });
@@ -96,7 +96,7 @@ module.exports = function(app) {
 
         res.cookie("name", user.name);
         res.cookie("user_id", user.uuid);
-        return res.redirect("/viewusers");
+        return res.redirect("/viewuser");
       });
     })(req, res, next);
   });
