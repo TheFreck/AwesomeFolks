@@ -44,7 +44,9 @@ $(document).ready(function() {
 
   $("#signIn").on("click", function(event) {
     event.preventDefault();
-    console.log("signin hit$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\/$$$$$$$$$$$$$$$$$4\/%%%%%%%%%%%%%%%%55\/%%%%%%%%%%%%%%%%%%");
+    console.log(
+      "signin hit$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n$$$$$$$$$$$$$$$$$4\n%%%%%%%%%%%%%%%%55\n%%%%%%%%%%%%%%%%%%"
+    );
     var user = {
       email: $("#emailIn")
         .val()
@@ -121,7 +123,7 @@ $(document).ready(function() {
   // VIEW FRIENDS LIST
   // *****************************************************************
 
-  $(".viewFriend").on("click", function() {
+  $("#viewFriend").on("click", function() {
     console.log("CLICKED VIEW FRIEND");
     location.href = "/api/view";
   });
@@ -130,13 +132,13 @@ $(document).ready(function() {
   // VIEW MY GIFT LIST
   // *****************************************************************
 
-  $(".createRegistry").on("click", function() {
+  $("#createRegistry").on("click", function() {
     $.get("/api/gifts/").then(function() {
       location.href = "/api/gifts/";
     });
   });
 
-  $(".viewShopping").on("click", function() {
+  $("#shoppingList").on("click", function() {
     console.log("clicked");
     $.get("/api/cart/").then(function() {
       location.href = "/api/cart/";

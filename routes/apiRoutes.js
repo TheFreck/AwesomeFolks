@@ -78,6 +78,7 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
+
   app.get("/api/cart/", function(req, res) {
     db.gift
       .findAll({
@@ -87,12 +88,11 @@ module.exports = function(app) {
         include: [db.user]
       })
       .then(function(data) {
+        console.log("db.user: ", db.user);
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("shoppingList", giftObject);
-        console.log("where is my user ID " + req.params.id);
       });
   });
 };

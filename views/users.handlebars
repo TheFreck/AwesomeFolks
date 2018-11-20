@@ -9,9 +9,10 @@
       <div class="row">
     <div class="col-12 offset-2">
       <h2>What Do You Want To Do?</h2>
-      <button class="btn btn-danger createRegistry">Create / View My List</button>
-      <button class="btn btn-warning viewFriend">View a Friends List</button>
-      <button class="btn btn-success viewShopping">See My Shopping List</button>
+      {{>navigation/nav-createRegistry}}
+      {{>navigation/nav-viewFriend}}
+      {{>navigation/nav-shopping}}
+      {{>shoppingList/partial-shop}}
       <br>
       {{#each user}}
 			  <button data-uuid={{uuid}} class="seeGifts">{{name}}</button>
