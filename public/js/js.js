@@ -64,8 +64,10 @@ $(document).ready(function() {
       }
     });
     console.log("user: ", user);
+    
   });
 
+  
   $("#users").on("click", function() {
     $(location).attr("href", "/");
   });
@@ -124,8 +126,8 @@ $(document).ready(function() {
   // *****************************************************************
 
   $(".viewFriend").on("click", function() {
-    console.log("CLICKED VIEW FRIEND");
-    location.href = "/users";
+    console.log("You clicked on thsi button");
+    location.href = "/api/userwish";
   });
 
   // *****************************************************************
