@@ -1,4 +1,24 @@
 <div class="container">
+    <div class="row">
+        <div class="col-12 offset-2">
+            {{>navigation/nav-logout}}
+            {{>navigation/nav-menu}}
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 offset-2">
+            <h2>WHICH GREEDY BASTARD DO YOU WANT TO BUY FOR?</h2>
+
+            <br>
+        {{#each user}}
+        <button data-uuid={{uuid}} class="waves-effect waves-light btn-large seeGifts">{{name}}</button>
+        {{/each}}
+
+        </div>
+        </div>
+        </div>
+       <div class="container">
   <div class="row">
     <div class="col-12 offset-2">
       {{>navigation/nav-logout}}

@@ -48,6 +48,8 @@ module.exports = function(app) {
     }
   });
 
+  
+
   // // login page
   // app.post("/login", function(req, res) {
   //   console.log("/login");
@@ -134,6 +136,10 @@ module.exports = function(app) {
       });
   });
 
+
+  // app.get("/userwish", function(req, res) {
+  //   res.render("userButton");
+  // });
   // ***********Grab list of users************
 
   app.get("/signup", function(req, res) {
