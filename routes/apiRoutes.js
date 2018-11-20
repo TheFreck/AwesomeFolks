@@ -77,6 +77,7 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
+
   app.get("/api/cart/", function(req, res) {
     db.gift
       .findAll({

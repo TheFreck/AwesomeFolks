@@ -45,18 +45,6 @@ module.exports = function(app) {
     }
   });
 
-  // login page
-  app.post("/login", function(req, res) {
-    console.log("/login");
-    res.redirect("/users");
-    if (req.isAuthenticated()) {
-      res.render("users")
-    } else {
-      res.render("login");
-    }
-  });
-  //  +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
-
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -84,7 +72,7 @@ module.exports = function(app) {
   });
 
   app.get("/cart", function(req, res) {
-    console.log("you've arrived at the cart");
+    console.log("\n\n\nyou've arrived at the cart\n\n\n");
     db.gift
       .findAll({
         where: {
@@ -100,7 +88,8 @@ module.exports = function(app) {
           giftArray.push({
             item: data[0].dataValues.item,
             id: data[0].dataValues.id,
-            price: data[0].dataValues.price
+            price: data[0].dataValues.price,
+            shopping: data[0].dataValues.shopping
           });
         }
         res.render("shoppingList", giftObject);
@@ -111,7 +100,7 @@ module.exports = function(app) {
     db.gift
       .update(
         {
-          shopping: 0
+          shopping: ""
         },
         {
           where: {
