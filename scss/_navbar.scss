@@ -1,103 +1,103 @@
 //menu buttons
-.menu-btn{
-	position: absolute;
-	z-index: 3;
-	right: 35px;
-	top: 35px;
-	// cursor functionalities hoving over menu buttons 
-	cursor:pointer;
-	@include easeOut;
+.menu-btn {
+  position: absolute;
+  z-index: 5;
+  right: 35px;
+  top: 35px;
+  // cursor functionalities hoving over menu buttons
+  cursor: pointer;
+  @include easeOut;
 
-	// buttons on html
-	.btn-line {
-		width: 28px;
-		height: 3px;
-		margin: 0 0 5px 0;
-		background: set-text-color($Secondary-color);
-		@include easeOut;
-	}
-	//Rotate into an 'x' when menu button clicked
-	&.close {
-		transform: rotate(180deg);
+  // buttons on html
+  .btn-line {
+    width: 28px;
+    height: 3px;
+    margin: 0 0 5px 0;
+    background: set-text-color($primary-color);
+    @include easeOut;
+  }
+  //Rotate into an 'x' when menu button clicked
+  &.close {
+    transform: rotate(180deg);
 
-		.btn-line{
-			// line 1 - Rotate
-			&:nth-child(1){
-				transform: rotate(45deg) translate(5px, 5px);
-			}
-			// line 2 - Hide
-			&:nth-child(2){
-				opacity: 0;
-			}
-			// line 3 -Rotate
-			&:nth-child(3){
-				transform: rotate(-45deg) translate(7px, -6px);
-			}
-		}
-	}
+    .btn-line {
+      // line 1 - Rotate
+      &:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 5px);
+      }
+      // line 2 - Hide
+      &:nth-child(2) {
+        opacity: 0;
+      }
+      // line 3 -Rotate
+      &:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -6px);
+      }
+    }
+  }
 }
 
 // Menu Overlay
 .menu {
-	position: fixed;
-	top: 0;
-	width: 100%;
-	opacity: 0.9;
-	visibility: hidden;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  opacity: 0.9;
+  visibility: hidden;
 
-	&.show {
-		visibility: visible;
-	}
-//
-	&-nav {
-		display: flex;
-		flex-flow: column wrap;
-		align-items: center;
-		justify-content: center;
-		float: left;
-		width: 50%;
-		height: 100vh;
-		overflow: hidden;
-	}
-  //navigation side of menu 
-	&-nav {
-		margin: 0;
-		padding: 0;
-		background: darken($primary-color, 5);
-		list-style: none;
-		transform: translate3d(0, -100%, 0);
-		@include easeOut;
+  &.show {
+    visibility: visible;
+  }
+  //
+  &-nav {
+    display: flex;
+    flex-flow: column wrap;
+    align-items: center;
+    justify-content: center;
+    float: left;
+    width: 50%;
+    height: 100vh;
+    overflow: hidden;
+  }
+  //navigation side of menu
+  &-nav {
+    margin: 0;
+    padding: 0;
+    background: darken($secondary-color, 5);
+    list-style: none;
+    transform: translate3d(0, -100%, 0);
+    @include easeOut;
 
-		&.show{
-			//slide in from the top effect
-			transform: translate3d(0,0,0)
-		}
-		&.current > a {
-			color: $secondary-color
-		}
-	}
-	
-	.nav-link {
-		display: inline-block;
-		position: relative;
-		font-size: 30px;
-		text-transform: uppercase;
-		padding: 1rem 0;
-		font-weight: 300;
-		color: set-text-color(white);
-		text-decoration: none;
-		@include easeOut;
-	
-		&:hover {
-			color: $secondary-color;
-		}
-	}
-	}
+    &.show {
+      //slide in from the top effect
+      transform: translate3d(0, 0, 0);
+    }
+    &.current > a {
+      color: $secondary-color;
+    }
+  }
+
+  .nav-link {
+    display: inline-block;
+    position: relative;
+    font-size: 30px;
+    text-transform: uppercase;
+    padding: 1rem 0;
+    font-weight: 300;
+    color: set-text-color(white);
+    text-decoration: none;
+    @include easeOut;
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
 
 //delay for the nav items to slide in
 
 @for $x from 1 through 4 {
-	.nav-item:nth-child(#{$x}){
-		transition-delay: $x * 0.1s;
-	}
+  .nav-item:nth-child(#{$x}) {
+    transition-delay: $x * 0.1s;
+  }
 }
