@@ -23,7 +23,7 @@ module.exports = function(app) {
       var giftObject = {
         gift: data
       };
-      res.render("viewGifts", giftObject);
+      res.render("userButton", giftObject);
       // res.json(data);
     });
   });

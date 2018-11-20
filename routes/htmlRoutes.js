@@ -45,6 +45,18 @@ module.exports = function(app) {
     }
   });
 
+  // login page
+  app.post("/login", function(req, res) {
+    console.log("/login");
+    res.redirect("/users");
+    if (req.isAuthenticated()) {
+      res.render("users")
+    } else {
+      res.render("login");
+    }
+  });
+  //  +-*/+-*/+-*/+-*/+-*/+-*/+-*/+-*/
+
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -132,6 +144,10 @@ module.exports = function(app) {
       });
   });
 
+
+  // app.get("/userwish", function(req, res) {
+  //   res.render("userButton");
+  // });
   // ***********Grab list of users************
 
   app.get("/signup", function(req, res) {

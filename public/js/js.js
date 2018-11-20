@@ -117,7 +117,8 @@ $(document).ready(function() {
   // *****************************************************************
 
   $(".viewFriend").on("click", function() {
-    location.href = "/api/view";
+    console.log("CLICKED VIEW FRIEND");
+    location.href = "/users";
   });
 
   // *****************************************************************
