@@ -62,8 +62,14 @@ $(document).ready(function() {
         console.log("oops something went wrong, please try again!");
       }
     });
+<<<<<<< HEAD
+=======
+    console.log("user: ", user);
+    
+>>>>>>> abb80f3364ce6a12d16542baabdb7b29299c4071
   });
 
+  
   $("#users").on("click", function() {
     $(location).attr("href", "/");
   });
@@ -122,8 +128,8 @@ $(document).ready(function() {
   // *****************************************************************
 
   $(".viewFriend").on("click", function() {
-    console.log("CLICKED VIEW FRIEND");
-    location.href = "/users";
+    console.log("You clicked on thsi button");
+    location.href = "/api/userwish";
   });
 
   // *****************************************************************
