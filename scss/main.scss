@@ -3,7 +3,7 @@
 @import "login";
 
 * {
-  box-sizing: boarder-box;
+  box-sizing: border-box;
 }
 
 body {
@@ -52,4 +52,4 @@ header {
   position: fixed;
 }
 
-@import 'mobile'; 
+@import "mobile";

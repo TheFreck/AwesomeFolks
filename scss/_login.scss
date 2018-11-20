@@ -16,7 +16,7 @@ body {
 .modality-form-wrap {
   background: radial-gradient(ellipse at center, #da4543 0%, #dd1c1a 100%);
   border: 1px solid #ca322f;
-  box-shadow: 0 1px #565c68 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px white inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 360px;
   height: 380px;
@@ -32,14 +32,14 @@ body {
     margin: 0 0 50px 0;
     padding: 0;
     font-size: 26px;
-    color: #fff;
+    color: white;
   }
   h5 {
     margin-top: 40px;
   }
   h5 > a {
     font-size: 14px;
-    $color: #fff;
+    color: login;
     text-decoration: none;
     font-weight: 400;
   }
@@ -52,7 +52,7 @@ body {
     border: 1px solid #314d89;
     outline: none;
     padding: 12px 20px;
-    color: #afafaf;
+    color: white;
     font-weight: 400;
     font-family: "Lato", sans-serif;
     cursor: pointer;
@@ -87,11 +87,11 @@ body {
     border-radius: 3px;
     padding: 8px;
     font-size: 17px;
-    color: #636363;
+    color: white;
     text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
     font-weight: 700;
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17),
-      0 1px 0 rgba(255, 255, 255, 0.36) inset;
+      0 1px white (255, 255, 255, 0.36) inset;
 
     &:hover {
       background: #ddd;
