@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
   // *****************************************************************
   // GATE KEEPER
   // *****************************************************************
@@ -62,14 +61,8 @@ $(document).ready(function() {
         console.log("oops something went wrong, please try again!");
       }
     });
-<<<<<<< HEAD
-=======
-    console.log("user: ", user);
-    
->>>>>>> abb80f3364ce6a12d16542baabdb7b29299c4071
   });
 
-  
   $("#users").on("click", function() {
     $(location).attr("href", "/");
   });

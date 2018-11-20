@@ -45,10 +45,6 @@ module.exports = function(app) {
     }
   });
 
-<<<<<<< HEAD
-=======
-
->>>>>>> abb80f3364ce6a12d16542baabdb7b29299c4071
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
@@ -137,11 +133,10 @@ module.exports = function(app) {
       });
   });
 
-
   app.get("/userwish", function(req, res) {
     db.user.findAll().then(function(user) {
       res.render("users", { user: user });
-      console.log("this is the user", user)
+      console.log("this is the user", user);
     });
     res.render("userButton");
   });
