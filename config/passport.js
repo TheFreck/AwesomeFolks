@@ -104,7 +104,9 @@ module.exports = function(passport) {
             }
           })
           .then(function(user, err) {
-            if (err) throw err;
+            if (err) {
+              throw err;
+            }
 
             if (!user) {
               console.log("no user found");
