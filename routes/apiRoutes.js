@@ -1,7 +1,7 @@
 var db = require("../models/");
 
-module.exports = function (app) {
-  app.get("/api/gifts/", function (req, res) {
+module.exports = function(app) {
+  app.get("/api/gifts/", function(req, res) {
     db.gift
       .findAll({
         where: {
@@ -9,37 +9,29 @@ module.exports = function (app) {
         },
         include: [db.user]
       })
-      .then(function (data) {
+      .then(function(data) {
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("gifts", giftObject);
       });
   });
 
-  // app.get("/api/userwish", function(req, res) {
-  //   db.user.findAll({
-  //     user: { exclude: req.session.passport.user
-  //   }).then(function(user) {
-  //     res.render("userButton", { user: user });
-  //     console.log(user)
-  // });
-  // });
-
   app.get("/api/userwish", function(req, res) {
-    db.user.findAll({
-      where: {
-        uuid: {
-          $ne: req.session.passport.user
+    db.user
+      .findAll({
+        where: {
+          uuid: {
+            $ne: req.session.passport.user
+          }
         }
-      }
-    }).then((user) => {
-      res.render("userButton", { user: user })
-    });
+      })
+      .then(user => {
+        res.render("userButton", { user: user });
+      });
   });
 
-  app.get("/api/view/:id", function (req, res) {
+  app.get("/api/view/:id", function(req, res) {
     // Find one Gift with the id in req.params.id and return them to the user with res.json
     db.gift
       .findAll({
@@ -48,7 +40,7 @@ module.exports = function (app) {
         },
         include: [db.user]
       })
-      .then(function (data) {
+      .then(function(data) {
         var giftObject = {
           gift: data
         };
@@ -67,12 +59,12 @@ module.exports = function (app) {
         // userUuid: req.user.uuid
         userUuid: req.session.passport.user
       })
-      .then(function (dbgifts) {
+      .then(function(dbgifts) {
         res.json(dbgifts);
       });
   });
 
-  app.delete("/api/gifts/:id", function (req, res) {
+  app.delete("/api/gifts/:id", function(req, res) {
     // Delete the Author with the id available to us in req.params.id
     db.gift
       .destroy({
@@ -80,7 +72,7 @@ module.exports = function (app) {
           id: req.params.id
         }
       })
-      .then(function (dbgifts) {
+      .then(function(dbgifts) {
         res.json(dbgifts);
       });
   });
@@ -93,7 +85,7 @@ module.exports = function (app) {
         },
         include: [db.user]
       })
-      .then(function (data) {
+      .then(function(data) {
         var giftObject = {
           gift: data
         };
