@@ -63,7 +63,7 @@ module.exports = function(app) {
   // SHOPPING LIST
   // $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$
 
-  app.put("/add-to-cart", function(req, res) {
+  app.put("/add-to-cart", function(req) {
     console.log("add to cart");
     console.log("req.user.uuid", req.session.passport.user);
     console.log("req.body.id: ", req.body.id);
