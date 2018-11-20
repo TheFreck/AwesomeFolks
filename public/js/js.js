@@ -41,6 +41,7 @@ $(document).ready(function() {
 
   $("#signIn").on("click", function(event) {
     event.preventDefault();
+    console.log("signIn ");
     var user = {
       email: $("#emailIn")
         .val()
