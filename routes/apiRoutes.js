@@ -15,15 +15,14 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("gifts", giftObject);
-        console.log("API/GIFTS " + req.params.id);
       });
   });
 
   app.get("/api/userwish", function(req, res) {
     db.user.findAll().then(function(user) {
       res.render("userButton", { user: user });
-      console.log(user)
-  });
+      console.log(user);
+    });
   });
 
   app.get("/api/view/:id", function(req, res) {
@@ -39,14 +38,11 @@ module.exports = function(app) {
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("viewUserGift", giftObject);
-        console.log("API VIEW ID " + req.params.id);
       });
   });
 
   app.post("/api/gifts/", function(req, res) {
-    console.log("???" + req.session);
     db.gift
       .create({
         item: req.body.item,
@@ -59,7 +55,6 @@ module.exports = function(app) {
       })
       .then(function(dbgifts) {
         res.json(dbgifts);
-        console.log(req.body.category);
       });
   });
 
@@ -75,6 +70,7 @@ module.exports = function(app) {
         res.json(dbgifts);
       });
   });
+
   app.get("/api/cart/", function(req, res) {
     db.gift
       .findAll({
@@ -89,7 +85,6 @@ module.exports = function(app) {
         };
         // res.json(dbgifts);
         res.render("shoppingList", giftObject);
-        console.log("API/CART " + req.params.id);
       });
   });
 };

@@ -1,11 +1,11 @@
 <div id="home">
+  {{>navigation/nav-logout}}
+  {{>navigation/nav-users}}
   <div class="container">
-		  {{>navigation/nav-logout}}
-
     <div class="tableContainer">
       <div class="row">
 	    <div class="col-12">
-	      <table class="centered responsive-table z-depth-5">
+	      <table id="shoppingList" class="centered responsive-table z-depth-5">
 		    <thead>
 		    <br>
 		      <h3 class="center-align" id="greedy">I'M A GREEDY BASTARD - HERE IS MY LIST</h3>
@@ -16,6 +16,7 @@
 			    <th>COMMENTS</th>
 			    <th>BUY IT</th>
 			    <th>FIND ONLINE</th>
+					<th>NEVERMIND</th>
               </tr>
 		   </thead>
              {{#each gift}}
@@ -32,8 +33,9 @@
 					<input type="text" class="itemInput" name="q" value="{{this.item}}" />
 					<input type="submit" id="online" target="_blank" value="Find Me Online" />
 				  </form>
-				</td>
-			   </tr>
+					</td>
+					<td><button data-item="{{this.item}}" data-id="{{this.id}}" class="large material-icons btn-floating btn-large waves-effect waves-light red nevermind">remove</button></td>
+			   	</tr>
 			 {{/each}}
 			  </tbody>
 			</table>
