@@ -1,106 +1,115 @@
+// this affects the whole page
 * {
   box-sizing: border-box;
-}
-
-html {
-  background: #e2e2e2;
-}
-
-body {
-  background: #e2e2e2;
   margin: 0;
   padding: 0;
-  font-family: "Lato", sans-serif;
 }
-
+// styling for the wrapper
 .modality-form-wrap {
-  background: radial-gradient(ellipse at center, #da4543 0%, #dd1c1a 100%);
-  border: 1px solid #ca322f;
-  box-shadow: 0 1px white inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  position: relative;
+  margin: 0 auto;
+  background: #ecf0f1;
+  width: 350px;
   border-radius: 5px;
-  width: 360px;
-  height: 380px;
-  margin: 60px auto;
-  padding: 50px 30px 0 30px;
-  text-align: center;
+  box-shadow: 3px 3px 10px #333;
+  padding: 15px;
+  margin-bottom: 30px;
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5 {
-    margin: 0 0 50px 0;
-    padding: 0;
-    font-size: 26px;
-    color: white;
+  h2 {
+    text-align: center;
+    font-weight: 200;
+    font-size: 2em;
+    margin-top: 10px;
+    color: #34495e;
   }
-  h5 {
-    margin-top: 40px;
-  }
-  h5 > a {
-    font-size: 14px;
-    color: login;
-    text-decoration: none;
-    font-weight: 400;
-  }
-}
+  // styling for the form
+  .form {
+    padding-top: 20px;
 
-.modality {
-  & input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    border: 1px solid #314d89;
-    outline: none;
-    padding: 12px 20px;
-    color: white;
-    font-weight: 400;
-    font-family: "Lato", sans-serif;
-    cursor: pointer;
+    input[type="text"],
+    input[type="password"],
+    button {
+      width: 80%;
+      margin-left: 10%;
+      margin-bottom: 25px;
+      height: 40px;
+      border-radius: 5px;
+      outline: 0;
+      -moz-outline-style: none;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+      border: 1px solid #bbb;
+      padding: 0 0 0 10px;
+      font-size: 14px;
+      &:focus {
+        border: 1px solid #57bfda;
+      }
+    }
+
+    a {
+      text-align: center;
+      font-size: 10px;
+      color: #57bfda;
+
+      p {
+        padding-bottom: 10px;
+      }
+    }
+
+    button {
+      background: #f44336;
+      border: none;
+      color: white;
+      font-size: 18px;
+      font-weight: 200;
+      cursor: pointer;
+      transition: box-shadow 0.4s ease;
+
+      &:hover {
+        box-shadow: 1px 1px 5px #555;
+      }
+
+      &:active {
+        box-shadow: 1px 1px 7px #222;
+      }
+    }
   }
 
-  & input[type="email"] {
-    border-bottom: none;
-    border-radius: 4px 4px 0 0;
-    padding-bottom: 13px;
-    box-shadow: 0 -1px 0 #e0e0e0 inset, 0 1px 2px rgba(0, 0, 0, 0.23) inset;
-  }
-
-  & input[type="password"] {
-    border-top: none;
-    border-radius: 0 0 4px 4px;
-    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.23) inset,
-      0 1px 2px rgba(255, 255, 255, 0.1);
-  }
-
-  & input[type="submit"] {
-    font-family: "Lato", sans-serif;
-    font-weight: 400;
-    background: linear-gradient(
-      to bottom,
-      rgba(224, 224, 224, 1) 0%,
-      rgba(206, 206, 206, 1) 100%
+  &:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: -webkit-linear-gradient(
+      left,
+      #27ae60 0%,
+      #27ae60 20%,
+      #8e44ad 20%,
+      #8e44ad 40%,
+      #57bfda 40%,
+      #57bfda 60%,
+      #f44336 60%,
+      #f44336 80%,
+      #fed81f 80%,
+      #fed81f 100%
     );
-    display: block;
-    margin: 20px auto 0 auto;
-    width: 100%;
-    border: none;
-    border-radius: 3px;
-    padding: 8px;
-    font-size: 17px;
-    color: white;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-    font-weight: 700;
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17),
-      0 1px white (255, 255, 255, 0.36) inset;
-
-    &:hover {
-      background: #ddd;
-    }
-
-    &:active {
-      padding-top: 9px;
-      padding-bottom: 7px;
-      background: #c9c9c9;
-    }
+    background: -moz-linear-gradient(
+      left,
+      #27ae60 0%,
+      #27ae60 20%,
+      #8e44ad 20%,
+      #8e44ad 40%,
+      #57bfda 40%,
+      #57bfda 60%,
+      #f44336 60%,
+      #f44336 80%,
+      #fed81f 80%,
+      #fed81f 100%
+    );
+    height: 5px;
+    border-radius: 5px 5px 0 0;
   }
 }
