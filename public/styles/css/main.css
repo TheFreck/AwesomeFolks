@@ -1,6 +1,6 @@
 .menu-btn {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   right: 35px;
   top: 35px;
   cursor: pointer;
@@ -40,14 +40,14 @@
   .menu-nav {
     margin: 0;
     padding: 0;
-    background: #fbd700;
+    background: #075570;
     list-style: none;
     transform: translate3d(0, -100%, 0);
     transition: all 0.5 ease-out; }
     .menu-nav.show {
       transform: translate3d(0, 0, 0); }
     .menu-nav.current > a {
-      color: #dd1c1a; }
+      color: #086788; }
   .menu .nav-link {
     display: inline-block;
     position: relative;
@@ -59,7 +59,7 @@
     text-decoration: none;
     transition: all 0.5 ease-out; }
     .menu .nav-link:hover {
-      color: #dd1c1a; }
+      color: #ffde15; }
 
 .nav-item:nth-child(1) {
   transition-delay: 0.1s; }
@@ -88,7 +88,7 @@ body {
 .modality-form-wrap {
   background: radial-gradient(ellipse at center, #da4543 0%, #dd1c1a 100%);
   border: 1px solid #ca322f;
-  box-shadow: 0 1px #565c68 inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 1px white inset, 0 0 10px 5px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   width: 360px;
   height: 380px;
@@ -103,11 +103,12 @@ body {
     margin: 0 0 50px 0;
     padding: 0;
     font-size: 26px;
-    color: #fff; }
+    color: white; }
   .modality-form-wrap h5 {
     margin-top: 40px; }
   .modality-form-wrap h5 > a {
     font-size: 14px;
+    color: login;
     text-decoration: none;
     font-weight: 400; }
 
@@ -117,7 +118,7 @@ body {
   border: 1px solid #314d89;
   outline: none;
   padding: 12px 20px;
-  color: #afafaf;
+  color: white;
   font-weight: 400;
   font-family: "Lato", sans-serif;
   cursor: pointer; }
@@ -144,10 +145,10 @@ body {
   border-radius: 3px;
   padding: 8px;
   font-size: 17px;
-  color: #636363;
+  color: white;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
   font-weight: 700;
-  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17), 0 1px 0 rgba(255, 255, 255, 0.36) inset; }
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.17), 0 1px white 255, 255, 255, 0.36 inset; }
   .modality input[type="submit"]:hover {
     background: #ddd; }
   .modality input[type="submit"]:active {
@@ -166,7 +167,8 @@ body {
   body#bg-img {
     background: url(../../Images/background.jpg);
     background-attachment: fixed;
-    background-size: cover; }
+    background-size: cover;
+    background-repeat: repeat; }
 
 h1,
 h2,
@@ -186,7 +188,7 @@ main {
   main .icons {
     margin-top: 1rem; }
     main .icons:hover {
-      color: #dd1c1a;
+      color: #086788;
       transition: all 0.5 ease-out; }
   main#home {
     overflow: hidden; }
@@ -260,3 +262,29 @@ font-size: 60px;
   border-radius:2px;
 }
 
+@media screen and (max-width: 768px) {
+  main {
+    align-items: center;
+    text-align: center;
+    font-size-adjust: inherit; }
+    main .lg-heading {
+      line-height: 1;
+      margin-bottom: 1rem; }
+  ul.menu-nav, div.menu-branding {
+    float: none;
+    width: 100%;
+    min-height: 0; }
+    ul.menu-nav.show, div.menu-branding.show {
+      transform: translate3d(0, 0, 0); }
+  .menu-nav {
+    height: 75vh;
+    transform: translate3d(-100%, 0, 0);
+    font-size: 24px; } }
+
+.about-info {
+  grid-template-areas: 'bioimage' 'bio' 'job1' 'job2' 'job3';
+  grid-template-columns: 1fr; }
+
+@media screen and (max-width: 500px) {
+  main#home h1 {
+    margin-top: 10vh; } }
