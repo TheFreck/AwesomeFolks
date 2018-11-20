@@ -146,27 +146,35 @@ $(document).ready(function() {
   // ADD TO SHOPPING CART
   // *****************************************************************
   $("#wishList").on("click", ".shopping", function() {
+    console.log("shoping list hit");
     var dataObject = {
       data: $(this).attr("data-item"),
-      id: $(this).attr("data-id")
+      id: $(this).attr("data-id"),
+      callback: (function() {
+        location.reload();
+      })()
     };
     $.ajax("/add-to-cart", {
       type: "PUT",
       data: dataObject
-    }).then(function(added) {
-      location.reload();
-      console.log("added", added);
+    }).then(function() {
+      console.log("this never fires for some reason");
     });
   });
 
   $("#shoppingList").on("click", ".nevermind", function() {
+    console.log("nevermind hit");
     var dataObject = {
       data: $(this).attr("data-item"),
       id: $(this).attr("data-id")
     };
+    console.log("dataObject", dataObject);
     $.ajax("/drop-from-cart", {
       type: "PUT",
-      data: dataObject
+      data: dataObject,
+      callback: (function() {
+        location.reload();
+      })()
     }).then(function(added) {
       location.reload();
       console.log("nevermind front end: ", added);
