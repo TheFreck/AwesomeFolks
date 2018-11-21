@@ -1,6 +1,4 @@
-				
 <div class="container">
-<<<<<<< HEAD
   <div class="row">
     <div class="col-8 offset-2">
       {{>navigation/nav-users}}
@@ -21,12 +19,30 @@
               <button type="submit" target="_blank" value="Find Me Online">Find Me Online</button>
             </form>
           </li>
+  <div class="row">
+    <div class="col-8 offset-2">
+        <h3>BUY ME THIS....NOW!</h3>
+      <ul id="wishList" class="list-group">
+        {{#each gift}}
+          {{#unless this.shopping.length}}
+            <li data-id="{{this.id}}" data-uuid="{{this.userUuid}}" class="list-group-item">
+              <h4>{{this.item}}</h4>
+              <p>{{this.category}}</p>
+              <p>{{this.price}}</p>
+              <p>{{this.comments}}</p>
+              <button class="btn btn-success float-right delete">PURCHASE</button>
+              <button data-item={{this.userUuid}} data-id="{{this.id}}" class="btn btn-warning float-right shopping">ADD TO SHOPPING LIST</button>
+              <form action="http://www.google.com/search" method="get">
+                <input type="text" class="itemInput" name="q" value="{{this.item}}"/>
+                <button type="submit" target="_blank" value="Find Me Online">Find Me Online</button>
+              </form>
+            </li>
+          {{/unless}}
         {{/each}}
       </ul>
     </div>
   </div>
 </div>
-=======
   
 
 
@@ -52,4 +68,4 @@
 </div>
 </div>
 </div>
->>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
+</div>
