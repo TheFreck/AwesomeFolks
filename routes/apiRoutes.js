@@ -90,12 +90,6 @@ module.exports = function(app) {
           gift: data
         };
         res.render("shoppingList", giftObject);
-<<<<<<< HEAD
-=======
-        console.log("API/CART " + req.params.id);
->>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
       });
   });
 };
-
-// ******?
