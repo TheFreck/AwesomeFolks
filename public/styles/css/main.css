@@ -180,7 +180,8 @@ h1,
 h2,
 h3 {
   margin: 0;
-  font-weight: 600; }
+  font-weight: 600;
+  text-shadow: 2px 2px black;    }
   h1.lg-heading,
   h2.lg-heading,
   h3.lg-heading {
@@ -225,8 +226,64 @@ header {
     font-size: 24px; } }
 
 .about-info {
-  grid-template-areas: 'bioimage' 'bio' 'job1' 'job2' 'job3';
+  grid-template-areas: 'bioimage'
+ 'bio'
+ 'job1'
+ 'job2'
+ 'job3';
   grid-template-columns: 1fr; }
+
+  table { 	
+    border-collapse: collapse; 	
+  }	
+   tr { 	
+    border: none; }	
+   td, th {	
+    /* border-right: solid 1px lightgray; 	
+    border-left: solid 1px black; */	
+    border-bottom: solid 1px #086788; 	
+    border-top: solid 1px #086788; 	
+  }	
+   .itemName {	
+    font-weight: bolder;	
+  }	
+      
+  .entryForm {	
+    color: red;	
+  }	
+   .inputClass {	
+    color: black;	
+  }	
+   .inputContainer { 	
+    border-collapse: collapse; 	
+    background-color: #57bfda;	
+  color: white;	
+  }	
+   .tableContainer { 	
+    border-collapse: collapse; 	
+    background-color: #57bfda;	
+    color: white;	
+  };	
+   #greedy {	
+  text-shadow: 2px 2px #FF0000;	
+  font-size: 60px;	
+  }	
+   .itemInput {	
+    display: none;	
+  }	
+   #online {	
+     
+    background-color: grey;	
+    border: none;	
+    color: white;	
+    padding: 10px 20px;	
+    text-align: center;	
+    text-decoration: none;	
+    display: inline-block;	
+    font-size: 16px;	
+    margin: 4px 2px;	
+    border-radius:2px;	
+  }
 
 @media screen and (max-width: 500px) {
   main#home h1 {
