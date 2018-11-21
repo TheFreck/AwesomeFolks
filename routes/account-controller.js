@@ -35,7 +35,7 @@ module.exports = function(app) {
       res.clearCookie("name");
       res.clearCookie("user_id");
       res.clearCookie("user_sid");
-      res.redirect("/");
+      res.redirect("/login");
     });
     console.log("logged out");
   });

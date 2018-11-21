@@ -2,6 +2,7 @@
 html, body {
   margin: 0;
   padding: 0;
+  position: fixed;
   font-family: Open Sans;
 }
 
@@ -10,17 +11,18 @@ html, body {
   color: white;
   height: 44px;
   display: flex;
+  position: fixed;
   justify-content: space-between;
-  align-items: center;
+}
   .navbar-logo {
     font-size: 108px;
     line-height: 0;
     top: 5px;
-    position: relative;
+    position: fixed;
   }
   .navbar-menu {
     text-align: center;
-    position: relative;
+    position: fixed;
     width: 44px;
     i {
       height: 44px;
@@ -30,22 +32,7 @@ html, body {
       font-size: 26px;
       cursor: pointer;
     }
-    .navbar-notification {
-      position: absolute;
-      right: 0;
-      bottom: 5px;
-      width: 16px;
-      height: 16px;
-			background: #fed81f;
-      border: 3px solid #f44336;
-      color: black;
-      border-radius: 50%;
-      font-size: 10px;
-      line-height: 16px;
-      font-weight: bold;
-    }
   }
-}
 
 .flyout {
   position: fixed;
@@ -100,7 +87,7 @@ html, body {
       }
       i {
         font-size: 28px;
-        position: relative;
+        position: fixed;
         top: 8px;
         margin-right: 5px;
       }
