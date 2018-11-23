@@ -31,14 +31,13 @@ module.exports = function(app) {
   // logout
   app.put("/logout", function(req, res) {
     req.session.destroy(function() {
-      console.log("inside the destroy");
       req.logout();
       res.clearCookie("name");
       res.clearCookie("user_id");
       res.clearCookie("user_sid");
       res.redirect("/");
     });
-    console.log("logged out");
+    console.log("you've been logged out");
   });
 
   // process the signup form ==============================================

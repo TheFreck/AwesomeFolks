@@ -69,10 +69,9 @@ $(document).ready(function() {
 
   // logout
   $("#logout").on("click", function() {
-    console.log("logout1");
     $.ajax("/logout", {
       method: "PUT"
-    }).then(console.log("logout2"));
+    }).then(console.log("you've been logged out"));
   });
 
   // *****************************************************************
