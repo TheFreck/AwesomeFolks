@@ -67,10 +67,12 @@ $(document).ready(function() {
     $(location).attr("href", "/");
   });
 
+  // logout
   $("#logout").on("click", function() {
-    $.post("/logout", function() {
-      $(location).attr("href", "/");
-    });
+    console.log("logout1");
+    $.ajax("/logout", {
+      method: "PUT"
+    }).then(console.log("logout2"));
   });
 
   // *****************************************************************
@@ -102,7 +104,6 @@ $(document).ready(function() {
   // *****************************************************************
 
   $(".delete").on("click", function() {
-    console.log("delete CLICKED");
     var id = $(this)
       .parent()
       .attr("data-id");
@@ -120,15 +121,8 @@ $(document).ready(function() {
   // VIEW FRIENDS LIST
   // *****************************************************************
 
-<<<<<<< HEAD
-  $("#viewFriend").on("click", function() {
-    console.log("CLICKED VIEW FRIEND");
-    location.href = "/api/view";
-=======
   $(".viewFriend").on("click", function() {
-    console.log("You clicked on thsi button");
     location.href = "/api/userwish";
->>>>>>> b1886055a5dd8f7832e7150a46b219b20b5b8ea7
   });
 
   // *****************************************************************
@@ -141,12 +135,7 @@ $(document).ready(function() {
     });
   });
 
-<<<<<<< HEAD
-  $("#shoppingList").on("click", function() {
-    console.log("clicked");
-=======
   $(".viewShopping").on("click", function() {
->>>>>>> 02a2cc6eea5438509c627299a14ed517eb238d16
     $.get("/api/cart/").then(function() {
       location.href = "/api/cart/";
     });
@@ -156,7 +145,6 @@ $(document).ready(function() {
   // ADD TO SHOPPING CART
   // *****************************************************************
   $("#wishList").on("click", ".shopping", function() {
-    console.log("shoping list hit");
     var dataObject = {
       data: $(this).attr("data-item"),
       id: $(this).attr("data-id"),
@@ -167,18 +155,14 @@ $(document).ready(function() {
     $.ajax("/add-to-cart", {
       type: "PUT",
       data: dataObject
-    }).then(function() {
-      console.log("this never fires for some reason");
     });
   });
 
   $("#shoppingList").on("click", ".nevermind", function() {
-    console.log("nevermind hit");
     var dataObject = {
       data: $(this).attr("data-item"),
       id: $(this).attr("data-id")
     };
-    console.log("dataObject", dataObject);
     $.ajax("/drop-from-cart", {
       type: "PUT",
       data: dataObject,
@@ -187,7 +171,6 @@ $(document).ready(function() {
       })()
     }).then(function(added) {
       location.reload();
-      console.log("nevermind front end: ", added);
     });
   });
 
@@ -198,8 +181,6 @@ $(document).ready(function() {
     var uuid = $(this).attr("data-uuid");
     $.get("/api/view/" + uuid).then(function() {
       location.href = "/api/view/" + uuid;
-
-      // location.reload();
     });
   });
 });
