@@ -86,10 +86,10 @@ module.exports = function(app) {
         include: [db.user]
       })
       .then(function(data) {
+        console.log("db.user: ", db.user);
         var giftObject = {
           gift: data
         };
-        // res.json(dbgifts);
         res.render("shoppingList", giftObject);
       });
   });

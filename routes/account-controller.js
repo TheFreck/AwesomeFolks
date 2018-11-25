@@ -29,15 +29,15 @@ module.exports = function(app) {
   });
 
   // logout
-  app.post("/logout", function(req, res) {
+  app.put("/logout", function(req, res) {
     req.session.destroy(function() {
       req.logout();
       res.clearCookie("name");
       res.clearCookie("user_id");
       res.clearCookie("user_sid");
-      res.redirect("/login");
+      res.redirect("/");
     });
-    console.log("logged out");
+    console.log("you've been logged out");
   });
 
   // process the signup form ==============================================

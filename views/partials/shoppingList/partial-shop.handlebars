@@ -1,9 +1,20 @@
 <li>
 	{{name}}
 
-	<button class="change-sleep" data-id="{{id}}" data-uuid="{{sleep}}">
-		{{#if sleep}}SLEEP TIME!{{else}}WAKE UP!{{/if}}
-	</button>
-
-	<button class="delete-cat" data-id="{{this.id}}">DELETE!</button>
+	<ul id="wishList" class="list-group">
+        {{#each gift}}
+			{{#unless this.purchase}}
+				<li data-id="{{this.id}}" data-uuid="{{this.userUuid}}" class="list-group-item">
+					<h4>{{this.item}}</h4>
+					<p>{{this.category}}</p>
+					<p>{{this.price}}</p>
+					<p>{{this.comments}}</p>
+					<button class="btn btn-success float-right delete">PURCHASE</button>
+					<form action="http://www.google.com/search" method="get">
+						<a type="submit" target="_blank" value="Find Me Online">Find Me Online</a>
+					</form>
+				</li>
+			{{/unless}}
+        {{/each}}
+      </ul>
 </li>

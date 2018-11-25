@@ -1,3 +1,31 @@
+<div id="home">
+	<br>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-8 offset-2">
+				<h1>{{msg}}</h1>
+				{{>navigation/nav-users}}
+				{{>navigation/nav-logout}}
+				<h2>Greedy Bastard List</h2>
+				<form class="clearfix mb-4 create-form">
+					<div class="form-group">
+						<label for="item"></label>
+						<input type="text" id="item" class="form-control" aria-describedby="item" placeholder="Enter Item Description">
+					</div>
+					<div class="form-group">
+						<label for="price"></label>
+						<input class="form-control" id="price" aria-describedby="price" placeholder="Enter Price (if known)"></textarea>
+					</div>
+					<div class="form-group">
+						<label for="comments"></label>
+						<input class="form-control" id="comments" aria-describedby="comments" placeholder="Enter additional info such as size, color, etc"></textarea>
+					</div>
+					<button id="submit" class="btn btn-primary float-right">Submit</button>
+				</form>
+
+		{{>navigation/nav-logout}}
+    {{>navigation/nav-users}}
  <div class="container">
 
       <div class="inputContainer z-depth-5">
